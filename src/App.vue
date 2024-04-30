@@ -1,13 +1,11 @@
-<script setup>
+<script>
+  import Login from "./public/components/login.component.vue";
 
+  export default{
+    name: "App",
+    components: {Login}
+  }
 </script>
-
 <template>
-  <div>
-    Hola mundo
-  </div>
+  <Login></Login>
 </template>
-
-<style scoped>
-
-</style>
