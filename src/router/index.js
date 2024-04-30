@@ -6,6 +6,7 @@ import RegisterCompanyComponent from "../public/components/register-company.comp
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {path: '/', redirect: '/login'},
         {path: '/login', component: LoginComponent, name: 'login'},
         {path: '/home', component: HomeComponent, name: 'home'},
         {path: '/register-company', component: RegisterCompanyComponent, name: 'register-company'}
@@ -13,6 +14,3 @@ const router = createRouter({
 });
 
 export default router;
-
-
-

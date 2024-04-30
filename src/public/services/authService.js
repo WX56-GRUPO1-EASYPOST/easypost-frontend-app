@@ -3,9 +3,10 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3000/usuarios';
 
 class AuthService {
-    async login(email, password) {
+    /*async login(email, password) {
         try {
             const response = await axios.get(API_URL);
+            console.log(response.data)
             const users = response.data;
 
             const user = users.find(u => u.email === email && u.password === password);
@@ -16,6 +17,9 @@ class AuthService {
         } catch (error) {
             throw error;
         }
+    }*/
+    getAllUsers() {
+        return axios.get(API_URL);
     }
 }
 

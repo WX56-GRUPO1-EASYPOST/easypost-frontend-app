@@ -9,7 +9,7 @@ export default {
       correo_electronico: '',
       contrasena: '',
       loginError: false
-    };
+    }
   },
   methods: {
     goToRegister() {
@@ -21,14 +21,19 @@ export default {
       }
     },
     async login() {
-      try {
-        const user = await AuthService.login(this.correo_electronico, this.contrasena);
-        this.loginError = false;
-        this.$router.push({path: '/home'});
-      } catch (error) {
+      const users = await AuthService.getAllUsers();
+      console.log(users.data);
+      const user = users.data.find(user => user.email === this.correo_electronico && user.password === this.contrasena);
+      this.loginError = false;
+      console.log(this.correo_electronico)
+      console.log(this.contrasena)
+      console.log(user)
+      if (!user) {
         this.loginError = true;
-        console.error(error.message);
+        return;
       }
+      this.$router.push({path: '/home'});
+
     }
   }
 }
@@ -38,35 +43,39 @@ export default {
 <template>
   <div class="structure">
     <Card class="img-card" style="width: 600px; height: 800px">
-      <div class="img-container">
-        <img src="../../assets/logo-register.png" alt="img-card-logo" style="width: 240px;">
-      </div>
-      <div class="label-container">
-        <b>EasyPost</b>
-      </div>
+      <template #content>
+        <div class="img-container">
+          <img src="../../assets/logo-register.png" alt="img-card-logo" style="width: 240px;">
+        </div>
+        <div class="label-container">
+          <b>EasyPost</b>
+        </div>
+      </template>
     </Card>
     <Card class="form-card" style="width: 600px; height: 800px">
-      <div class="card-info">
-        <div style="text-align: center; font-size: 30px"><b>Ingrese a su cuenta</b></div>
-        <br><br>
-        <div>
-          <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Todavía no te has registrado?</div>
-          <Button class="button-a" @click="goToRegister">Crear cuenta</Button>
+      <template #content>
+        <div class="card-info">
+          <div style="text-align: center; font-size: 30px"><b>Ingrese a su cuenta</b></div>
+          <br><br>
+          <div>
+            <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Todavía no te has registrado?</div>
+            <Button class="button-a" @click="goToRegister">Crear cuenta</Button>
+          </div>
+          <br>
+          <form class="login-form">
+            <div v-if="loginError" style="color: red; text-align: center;">
+              Correo electrónico o contraseña no válidos.
+            </div>
+            <div class="form-group">
+              <input v-model="correo_electronico" type="text" placeholder="Correo electrónico" class="input" id="email">
+            </div>
+            <div class="form-group">
+              <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
+            </div>
+            <Button style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
+          </form>
         </div>
-        <br>
-        <form class="login-form">
-          <div v-if="loginError" style="color: red; text-align: center;">
-            Correo electrónico o contraseña no válidos.
-          </div>
-          <div class="form-group">
-            <input v-model="correo_electronico" type="text" placeholder="Correo electrónico" class="input" id="email">
-          </div>
-          <div class="form-group">
-            <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
-          </div>
-          <Button style="color: black; background-color: #6FA9AE" class="submit-button" @click="login">Ingresar</Button>
-        </form>
-      </div>
+      </template>
     </Card>
 
   </div>

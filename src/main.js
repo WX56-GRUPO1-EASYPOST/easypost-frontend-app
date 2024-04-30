@@ -14,5 +14,8 @@ import MenuBar      from 'primevue/menubar';
 import Toolbar      from 'primevue/toolbar';
 
 createApp(App)
-    .use(PrimeVue, { ripple: true }, router)
+    .use(PrimeVue, { ripple: true })
+    .use(router)
+    .component('Card', Card)
+    .component('Button', Button)
     .mount('#app')
