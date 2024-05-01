@@ -21,7 +21,7 @@ class AuthService {
     getAllUsers() {
         return axios.get(API_URL);
     }
-    postUser(user) {
+    registerUser(user) {
         return axios.post(API_URL, user);
     }
 }

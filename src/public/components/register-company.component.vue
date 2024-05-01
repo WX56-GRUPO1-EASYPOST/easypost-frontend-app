@@ -1,8 +1,13 @@
 <script >
+
+import {User} from "../model/user.entity.js";
+import AuthService from '../services/authService';
+
 export default {
   name: "login",
   data() {
     return {
+      id: 0,
       email: '',
       password: '',
       full_name: '',
@@ -18,6 +23,17 @@ export default {
     changeRol() {
       this.Company = !this.Company;
       this.Client = !this.Client;
+    },
+    Register() {
+      if (this.Company) {
+        this.rol = 'empresa';
+      } else {
+        this.rol = 'cliente';
+      }
+      this.id = Math.floor(Math.random() * 1000);
+      const user = new User(this.id, this.full_name, this.email, this.password, this.rol);
+      console.log(user);
+      AuthService.registerUser(user);
     }
   }
 }
@@ -63,9 +79,9 @@ export default {
             </div>
             <div class="form-group">
               <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
-              <Button v-if="Company" class="button-b" @click="changeRol">Cliente</Button>
+              <Button v-if="Company" class="button-b" >Cliente</Button>
 
-              <Button v-if="Client" class="button-b" @click="changeRol">Empresa</Button>
+              <Button v-if="Client" class="button-b" >Empresa</Button>
               <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
             </div>
             <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</Button>

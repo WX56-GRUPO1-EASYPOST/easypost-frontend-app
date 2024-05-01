@@ -27,7 +27,6 @@ export default {
         return;
       }
       this.$router.push({path: '/home'});
-
     }
   }
 }
