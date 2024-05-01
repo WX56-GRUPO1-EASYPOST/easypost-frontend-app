@@ -21,6 +21,9 @@ class AuthService {
     getAllUsers() {
         return axios.get(API_URL);
     }
+    postUser(user) {
+        return axios.post(API_URL, user);
+    }
 }
 
 export default new AuthService();
