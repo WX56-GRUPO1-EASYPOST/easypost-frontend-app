@@ -1,5 +1,27 @@
 <script >
 
+export default {
+  name: "login",
+  data() {
+    return {
+      email: '',
+      password: '',
+      full_name: '',
+      rol: '',
+      Company: true,
+      Client: false
+    }
+  },
+  methods: {
+    goToLogin() {
+      this.$router.push({ path: '/login' });
+    },
+    changeRol() {
+      this.Company = !this.Company;
+      this.Client = !this.Client;
+    }
+  }
+}
 </script>
 
 <template>
@@ -17,11 +39,11 @@
     <Card class="form-card" style="width: 600px; height: 800px">
       <template #content>
         <div class="card-info">
-          <div style="text-align: center; font-size: 30px"><b>Ingrese a su cuenta</b></div>
+          <div style="text-align: center; font-size: 30px"><b>Registrar nueva cuenta</b></div>
           <br><br>
           <div>
-            <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Todavía no te has registrado?</div>
-            <Button class="button-a" @click="goToRegister">Crear cuenta</Button>
+            <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
+            <Button class="button-a" @click="goToLogin">Iniciar sesion</Button>
           </div>
           <br>
           <form class="login-form">
@@ -29,10 +51,23 @@
               Correo electrónico o contraseña no válidos.
             </div>
             <div class="form-group">
-              <input v-model="correo_electronico" type="text" placeholder="Correo electrónico" class="input" id="email">
+              <input v-model="full_name" type="text" placeholder="Nombre Completo" class="input" id="email">
             </div>
             <div class="form-group">
-              <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
+              <input v-model="email" type="text" placeholder="Correo electrónico" class="input" id="email">
+            </div>
+            <div class="form-group">
+              <input v-model="password" type="password" placeholder="Contraseña" class="input" id="password">
+            </div>
+            <div class="form-group">
+              <input v-model="password" type="password" placeholder="Repetir contraseña" class="input" id="password">
+            </div>
+            <div class="form-group">
+              <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
+              <Button v-if="Company" class="button-a" @click="changeRol">Cliente</Button>
+
+              <Button v-if="Client" class="button-a" @click="changeRol">Empresa</Button>
+              <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
             </div>
             <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
           </form>

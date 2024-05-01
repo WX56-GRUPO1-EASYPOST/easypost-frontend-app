@@ -2,7 +2,7 @@
 import AuthService from '../services/authService';
 
 export default {
-  name: "MainPage",
+  name: "login",
   data() {
     return {
       correo_electronico: '',
