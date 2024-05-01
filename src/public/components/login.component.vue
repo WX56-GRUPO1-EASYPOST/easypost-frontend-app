@@ -1,6 +1,5 @@
 <script>
 import AuthService from '../services/authService';
-import Card from "primevue/card";
 
 export default {
   name: "MainPage",
@@ -13,12 +12,7 @@ export default {
   },
   methods: {
     goToRegister() {
-      console.log(this.$router);
-      if (this.$router) {
-        this.$router.push({ path: '/register-company' });
-      } else {
-        console.error('Router instance is undefined.');
-      }
+      this.$router.push({ path: '/register-company' });
     },
     async login() {
       const users = await AuthService.getAllUsers();
@@ -72,7 +66,7 @@ export default {
             <div class="form-group">
               <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
             </div>
-            <Button style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
+            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
           </form>
         </div>
       </template>
@@ -112,8 +106,9 @@ export default {
   justify-content: center;
   font-size: 80px;
   color: #704116;
-  position: absolute;
-  padding: 240px 0 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .img-container {
@@ -173,8 +168,10 @@ export default {
 
 .submit-button:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 .button-a:hover {
   opacity: 0.4;
+  cursor: pointer;
 }
 </style>
