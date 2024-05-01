@@ -10,13 +10,39 @@ export default {
       id: 0,
       email: '',
       password: '',
+      repeat_password: '',
       full_name: '',
       rol: '',
       Company: true,
-      Client: false
+      Client: false,
+      formErrors: []
     }
   },
   methods: {
+    isValidEmail(email) {
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return pattern.test(email);
+    },
+
+    isPasswordStrong(password) {
+      const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      return pattern.test(password);
+    },
+
+    isValidName(name) {
+      return name.length > 2;
+    },
+
+    async isEmailAlreadyRegistered(email) {
+      try {
+        const users = await AuthService.getAllUsers();
+        return users.data.find(user => user.email === email) !== undefined;
+      } catch (error) {
+        console.error("Failed to fetch users", error);
+        return false;
+      }
+    },
+
     goToLogin() {
       this.$router.push({ path: '/login' });
     },
@@ -24,16 +50,48 @@ export default {
       this.Company = !this.Company;
       this.Client = !this.Client;
     },
-    Register() {
-      if (this.Company) {
-        this.rol = 'empresa';
-      } else {
-        this.rol = 'cliente';
+    async Register() {
+      this.formErrors = [];
+
+      const emailRegistered = await this.isEmailAlreadyRegistered(this.email);
+      if (emailRegistered) {
+        this.formErrors.push('El email ya está registrado.');
       }
-      this.id = Math.floor(Math.random() * 1000);
-      const user = new User(this.id, this.full_name, this.email, this.password, this.rol);
-      console.log(user);
-      AuthService.registerUser(user);
+
+      if (!this.isValidEmail(this.email)) {
+        this.formErrors.push('El email no es válido.');
+      }
+
+      if (!this.isValidEmail(this.email)) {
+        this.formErrors.push('El email no es válido.');
+      }
+
+      if (!this.isPasswordStrong(this.password)) {
+        this.formErrors.push('La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula y un número.');
+      }
+
+      if (!this.isValidName(this.full_name)) {
+        this.formErrors.push('El nombre completo debe tener más de dos caracteres.');
+      }
+
+      if (this.password !== this.repeat_password) {
+        this.formErrors.push('Las contraseñas no coinciden.');
+      }
+
+      if (this.formErrors.length === 0) {
+        if (this.Company) {
+          this.rol = 'empresa';
+        } else {
+          this.rol = 'cliente';
+        }
+        this.id = Math.floor(Math.random() * 1000);
+        const user = new User(this.id, this.full_name, this.email, this.password, this.rol);
+        console.log(user);
+        AuthService.registerUser(user);
+        this.$router.push({ path: '/login' });
+      } else {
+        console.log(this.formErrors);
+      }
     }
   }
 }
@@ -60,11 +118,13 @@ export default {
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
             <Button class="button-a" @click="goToLogin">Iniciar sesion</Button>
           </div>
+          <div v-if="formErrors.length > 0">
+            <ul>
+              <li v-for="error in formErrors" :key="error" style="color: red;">{{ error }}</li>
+            </ul>
+          </div>
           <br>
           <form class="login-form">
-            <div v-if="loginError" style="color: red; text-align: center;">
-              Correo electrónico o contraseña no válidos.
-            </div>
             <div class="form-group">
               <input v-model="full_name" type="text" placeholder="Nombre Completo" class="input" id="email">
             </div>
@@ -75,7 +135,7 @@ export default {
               <input v-model="password" type="password" placeholder="Contraseña" class="input" id="password">
             </div>
             <div class="form-group">
-              <input v-model="password" type="password" placeholder="Repetir contraseña" class="input" id="password">
+              <input v-model="repeat_password" type="password" placeholder="Repetir contraseña" class="input" id="repeat_password">
             </div>
             <div class="form-group">
               <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
