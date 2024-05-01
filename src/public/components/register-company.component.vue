@@ -64,9 +64,9 @@ export default {
             </div>
             <div class="form-group">
               <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
-              <Button v-if="Company" class="button-a" @click="changeRol">Cliente</Button>
+              <Button v-if="Company" class="button-b" @click="changeRol">Cliente</Button>
 
-              <Button v-if="Client" class="button-a" @click="changeRol">Empresa</Button>
+              <Button v-if="Client" class="button-b" @click="changeRol">Empresa</Button>
               <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
             </div>
             <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
@@ -162,6 +162,13 @@ export default {
 }
 
 .button-a {
+  border-width: 0;
+  height: 30px;
+  border-color: inherit;
+  border-radius: 10px;
+}
+.button-b {
+  color: gray;
   border-width: 0;
   height: 30px;
   border-color: inherit;
