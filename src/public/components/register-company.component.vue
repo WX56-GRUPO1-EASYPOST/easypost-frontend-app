@@ -1,5 +1,4 @@
 <script >
-
 export default {
   name: "login",
   data() {
@@ -69,7 +68,7 @@ export default {
               <Button v-if="Client" class="button-b" @click="changeRol">Empresa</Button>
               <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
             </div>
-            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
+            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</Button>
           </form>
         </div>
       </template>
