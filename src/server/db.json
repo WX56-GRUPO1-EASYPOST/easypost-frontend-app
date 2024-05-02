@@ -1,49 +1,69 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Usuario Uno",
       "email": "usuario1@example.com",
       "password": "pass123",
       "rol": "cliente"
     },
-
     {
-      "id": 2,
+      "id": "2",
       "name": "Usuario Dos",
       "email": "usuario2@example.com",
       "password": "pass456",
       "rol": "empresa"
+    },
+    {
+      "id": "308",
+      "name": "miguel",
+      "email": "miguel@gmail.com",
+      "password": "Miguel123",
+      "role": "cliente",
+      "rol": "empresa"
+
     }
   ],
-  "deliverables": [
+  "requests": [
     {
       "id": "1",
-      "name": "Información de material y costos",
-      "description":"Este entregable consistirá en un documento detallado que describa los materiales que se van a utilizar en el proyecto, los diferentes tipos de calidad. Adicional se va a detallar los tipos de postes con sus respectivos costos de cada uno.",
-      "limitDate": "12/10/2021",
-      "status": "Pendiente"
+      "cliente_id": 1,
+      "empresa_id": 2,
+      "ubicacion": {
+        "departamento": "Arequipa",
+        "provincia": "Arequipa",
+        "distrito": "Cercado",
+        "localidad": "Zona Industrial",
+        "direccion": "Av. Industrial 456",
+        "referencia": "Frente a la fábrica de textil"
+      },
+      "detalles_del_proyecto": {
+        "plazo": "45 días",
+        "motivo": "Construcción de almacén",
+        "diseño": "Funcional y seguro",
+        "cantidad": "Construcción desde cero",
+        "presupuesto": "$10000"
+      }
     },
     {
       "id": "2",
-      "name": "Planos y estructura del proyecto",
-      "description": "Se entregará un prototipo interactivo de los planos.",
-      "limitDate": "12/10/2021",
-      "status": "Pendiente"
-    },
-    {
-      "id": "3",
-      "name": "Cronograma y avance del proyecto",
-      "description": "En esta entrega se enviará el cronograma de cuando se culminaría con el proyecto",
-      "limitDate": "12/10/2021",
-      "status": "Pendiente"
-    },
-    {
-      "id": "4",
-      "name": "Compra de material para el proyecto",
-      "description": "Esta entrega consistirá en la entrega de evidencia e información",
-      "limitDate": "12/10/2021",
-      "status": "Pendiente"
+      "cliente_id": 308,
+      "empresa_id": 2,
+      "ubicacion": {
+        "departamento": "Lima",
+        "provincia": "Lima",
+        "distrito": "San Isidro",
+        "localidad": "Residencial San Felipe",
+        "direccion": "Av. Salaverry 256",
+        "referencia": "a 3 cuadras de real plaza"
+      },
+      "detalles_del_proyecto": {
+        "plazo": "3 meses",
+        "motivo": "Construcción de almacén",
+        "diseño": "Funcional y seguro",
+        "cantidad": "Construcción desde cero",
+        "presupuesto": "$10000"
+      }
     }
   ]
 }
