@@ -145,8 +145,8 @@ footer {
 }
 
 .footer-item img {
-  width: 35px; /* Ajusta el tamaño de los iconos según tus necesidades */
-  margin-right: 0.5rem; /* Espacio entre los iconos */
+  width: 35px;
+  margin-right: 0.5rem;
 }
 
 .footer-item.logo img {
