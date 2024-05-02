@@ -21,9 +21,15 @@ class AuthService {
     getAllUsers() {
         return axios.get(API_URL);
     }
+
     getUserById(userId) {
         const url = `${API_URL}/${userId}`;
         return axios.get(url);
+    }
+    
+    registerUser(user) {
+        return axios.post(API_URL, user);
+
     }
 }
 
