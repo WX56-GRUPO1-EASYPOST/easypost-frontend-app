@@ -2,6 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import router from './router/index.js'
+import Dialog from 'primevue/dialog';
+import 'primevue/resources/themes/md-light-indigo/theme.css';
+
 
 // Add PrimeVue Components
 import Card         from 'primevue/card';
@@ -18,4 +21,5 @@ createApp(App)
     .use(router)
     .component('Card', Card)
     .component('Button', Button)
+    .component('pv-dialog', Dialog, )
     .mount('#app')
