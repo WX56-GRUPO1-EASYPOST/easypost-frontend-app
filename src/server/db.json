@@ -19,7 +19,9 @@
       "name": "miguel",
       "email": "miguel@gmail.com",
       "password": "Miguel123",
-      "role": "cliente"
+      "role": "cliente",
+      "rol": "empresa"
+
     }
   ],
   "requests": [
