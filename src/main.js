@@ -3,8 +3,8 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import router from './router/index.js'
 import 'primevue/resources/themes/md-light-indigo/theme.css'
-
-
+import Dialog from 'primevue/dialog';
+import 'primevue/resources/themes/md-light-indigo/theme.css';
 // Add PrimeVue Components
 import Card         from 'primevue/card';
 import Button       from 'primevue/button';
@@ -28,9 +28,9 @@ import 'primeicons/primeicons.css';
 createApp(App)
     .use(PrimeVue, { ripple: true })
     .use(router)
-
     .component('pv-card', Card)
     .component('pv-button', Button)
     .component('pv-orderList', OrderList)
     .component('pv-input-text', InputText)
+    .component('pv-dialog', Dialog, )
     .mount('#app')
