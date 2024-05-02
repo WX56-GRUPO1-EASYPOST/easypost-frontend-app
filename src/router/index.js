@@ -15,7 +15,7 @@ const router = createRouter({
         {path: '/home/:userId', component: HomeComponent, name: 'home',props:true},
         {path: '/register-company', component: RegisterCompanyComponent, name: 'register-company'},
         {path: '/requests/:userId', component: RequestComponent, name: 'requests',props:true},
-        {path:'/contact',component:Contact}
+        {path:'/contact/:userId',component:Contact, name: 'contact',props:true},
 
     ]
 });

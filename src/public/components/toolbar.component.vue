@@ -50,6 +50,9 @@ export default {
       this.$router.push({ name: 'login'});
     },
     goToContact() {
+      // Obtener el ID del usuario de la ruta actual
+      const userId = this.$route.params.userId;
+      this.$router.push({ name: 'contact',params: { userId } });
     },
     goToRequests() {
       // Obtener el ID del usuario de la ruta actual
