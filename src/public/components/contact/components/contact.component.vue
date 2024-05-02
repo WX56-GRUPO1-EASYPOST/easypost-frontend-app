@@ -3,6 +3,7 @@ import ContactsListService from "../services/contactsListService.js";
 
 export default {
   name: 'ContactPage',
+  components: {},
   data() {
 
     return {
@@ -33,15 +34,15 @@ export default {
     <div class="clients">
       <h2>Clientes</h2>
       <hr>
-      <Card v-if="contactsList" v-for="contact in contactsList" :key="contact.id">
+      <pv-card v-if="contactsList" v-for="contact in contactsList" :key="contact.id">
         <template #title>Jose</template>
         <template #content>
           <img src="" alt="perfil">
         </template>
-      </Card>
-      <Card v-else>
+      </pv-card>
+      <pv-card v-else>
         <template #title>No hay contactos</template>
-      </Card>
+      </pv-card>
     </div>
     <div class="chat">
       <div>
@@ -58,9 +59,9 @@ export default {
           <pv-input-text placeholder="Escriba un mensaje" type="text" v-model="message"/>
         </div>
         <div>
-          <button @click="sendMessage">
+          <pv-button @click="sendMessage">
             <i class="pi pi-send" style="font-size:2rem"></i>
-          </button>
+          </pv-button>
         </div>
       </div>
     </div>

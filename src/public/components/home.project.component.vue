@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <Card title="Tus Proyectos">
+    <pv-card title="Tus Proyectos">
       <template #content>
         <h2 class="title">Tus Proyectos</h2>
         <div class="projects-container">
-          <Card title="Proyecto 1" class="project-card">
+          <pv-card title="Proyecto 1" class="project-card">
             <template #content>
               <div class="project-details">
                 <div class="project-info">
@@ -21,8 +21,8 @@
                 </div>
               </div>
             </template>
-          </Card>
-          <Card title="Proyecto 1" class="project-card">
+          </pv-card>
+          <pv-card title="Proyecto 1" class="project-card">
             <template #content>
               <div class="project-details">
                 <div class="project-info">
@@ -34,8 +34,8 @@
                 </div>
               </div>
             </template>
-          </Card>
-          <Card title="Proyecto 1" class="project-card">
+          </pv-card>
+          <pv-card title="Proyecto 1" class="project-card">
             <template #content>
               <div class="project-details">
                 <div class="project-info">
@@ -47,8 +47,8 @@
                 </div>
               </div>
             </template>
-          </Card>
-          <Card title="Proyecto 1" class="project-card">
+          </pv-card>
+          <pv-card title="Proyecto 1" class="project-card">
             <template #content>
               <div class="project-details">
                 <div class="project-info">
@@ -60,10 +60,10 @@
                 </div>
               </div>
             </template>
-          </Card>
+          </pv-card>
         </div>
       </template>
-    </Card>
+    </pv-card>
   </div>
 </template>
 
