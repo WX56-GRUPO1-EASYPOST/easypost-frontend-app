@@ -144,7 +144,7 @@ export default {
               <Button v-if="Client" class="button-b" >Empresa</Button>
               <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
             </div>
-            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</Button>
+            <Button class="submit-button" style="background-color: #6FA9AE" @click="Register">Registrar</Button>
           </form>
         </div>
       </template>
@@ -153,7 +153,7 @@ export default {
   </div>
 </template>
 
-<style >
+<style scoped>
 .structure {
   display: flex;
   justify-content: center;
@@ -230,6 +230,9 @@ export default {
 }
 
 .submit-button {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-width: 0;
   height: 30px;
   border-color: inherit;
@@ -237,13 +240,14 @@ export default {
 }
 
 .button-a {
+  background-color: #6FA9AE;
   border-width: 0;
   height: 30px;
   border-color: inherit;
   border-radius: 10px;
 }
 .button-b {
-  color: gray;
+  background-color: gray;
   border-width: 0;
   height: 30px;
   border-color: inherit;
