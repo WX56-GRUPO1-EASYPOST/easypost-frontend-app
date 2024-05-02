@@ -28,7 +28,8 @@ export default {
         this.loginError = true;
         return;
       }
-      this.$router.push({path: '/home'});
+      const userId = user.id;
+      this.$router.push({path: `/home/${userId}`});
     }
   }
 }

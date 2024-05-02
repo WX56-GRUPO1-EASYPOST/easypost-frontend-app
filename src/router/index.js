@@ -5,7 +5,7 @@ import RegisterCompanyComponent from "../public/components/register-company.comp
 
 import RequestComponent from "../clients/components/request.component.vue";
 
-import ToolbarFooterComponent from "../public/components/toolbar-footer.component.vue";
+import ToolbarFooterComponent from "../public/components/toolbar.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
