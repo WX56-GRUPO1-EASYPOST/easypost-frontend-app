@@ -7,13 +7,26 @@
       "password": "pass123",
       "rol": "cliente"
     },
-
     {
       "id": 2,
       "name": "Usuario Dos",
       "email": "usuario2@example.com",
       "password": "pass456",
-      "rol": "empresa"
+      "rol": "empresa",
+      "contacts": [
+        {
+          "userId": 3,
+          "name": "Jose Luna Segovia"
+        },
+        {
+          "userID": 4,
+          "name": "Enrique Palacios"
+        },
+        {
+          "userId": 5,
+          "name": "Raul Quispe"
+        }
+      ]
     }
   ],
   "deliverables": [
