@@ -86,7 +86,7 @@ export default {
           this.rol = 'cliente';
         }
         this.id = Math.floor(Math.random() * 1000);
-        const user = new User(this.id, this.full_name, this.email, this.password, this.rol);
+        const user = new User(this.id.toString(), this.full_name, this.email, this.password, this.rol);
         console.log(user);
         AuthService.registerUser(user);
         this.$router.push({ path: '/login' });
@@ -140,13 +140,13 @@ export default {
             </div>
             <div class="form-group">
 
-              <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
-              <Button v-if="Company" class="button-b" >Cliente</Button>
+              <pv-button v-if="Client" class="button-a" @click="changeRol">Cliente</pv-button>
+              <pv-button v-if="Company" class="button-b" >Cliente</pv-button>
 
-              <Button v-if="Client" class="button-b" >Empresa</Button>
-              <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
+              <pv-button v-if="Client" class="button-b" >Empresa</pv-button>
+              <pv-button v-if="Company" class="button-a" @click="changeRol">Empresa</pv-button>
             </div>
-            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</Button>
+            <pv-button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</pv-button>
           </form>
         </div>
       </template>

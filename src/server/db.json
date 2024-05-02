@@ -7,18 +7,24 @@
       "password": "pass123",
       "rol": "cliente"
     },
-
     {
       "id": "2",
       "name": "Usuario Dos",
       "email": "usuario2@example.com",
       "password": "pass456",
       "rol": "empresa"
+    },
+    {
+      "id": "308",
+      "name": "miguel",
+      "email": "miguel@gmail.com",
+      "password": "Miguel123",
+      "role": "empresa"
     }
   ],
   "requests": [
     {
-      "id": 1,
+      "id": "1",
       "cliente_id": 1,
       "empresa_id": 2,
       "ubicacion": {
@@ -38,7 +44,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "cliente_id": 1,
       "empresa_id": 2,
       "ubicacion": {
