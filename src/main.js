@@ -13,6 +13,10 @@ import Menu         from 'primevue/menu';
 import MenuBar      from 'primevue/menubar';
 import Toolbar      from 'primevue/toolbar';
 
+import 'primevue/resources/themes/md-light-indigo/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
+
 createApp(App)
     .use(PrimeVue, { ripple: true })
     .use(router)

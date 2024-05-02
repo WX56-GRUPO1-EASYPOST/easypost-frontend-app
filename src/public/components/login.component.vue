@@ -75,7 +75,7 @@ export default {
 </template>
 
 
-<style >
+<style scoped>
 .structure {
   display: flex;
   justify-content: center;
@@ -152,6 +152,9 @@ export default {
 }
 
 .submit-button {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-width: 0;
   height: 30px;
   border-color: inherit;
