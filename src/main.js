@@ -2,10 +2,13 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import router from './router/index.js'
+import 'primevue/resources/themes/md-light-indigo/theme.css'
+
 
 // Add PrimeVue Components
 import Card         from 'primevue/card';
 import Button       from 'primevue/button';
+import OrderList from 'primevue/orderlist';
 import SelectButton from 'primevue/selectbutton';
 import Sidebar      from 'primevue/sidebar';
 import Avatar       from 'primevue/avatar';
@@ -16,6 +19,7 @@ import Toolbar      from 'primevue/toolbar';
 createApp(App)
     .use(PrimeVue, { ripple: true })
     .use(router)
-    .component('Card', Card)
-    .component('Button', Button)
+    .component('pv-card', Card)
+    .component('pv-button', Button)
+    .component('pv-orderList', OrderList)
     .mount('#app')

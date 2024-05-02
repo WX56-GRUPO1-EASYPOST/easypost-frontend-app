@@ -2,6 +2,7 @@
 
 export default {
   name: "login",
+  components: {},
   data() {
     return {
       email: '',
@@ -26,7 +27,7 @@ export default {
 
 <template>
   <div class="structure">
-    <Card class="img-card" style="width: 600px; height: 800px">
+    <pv-card class="img-card" style="width: 600px; height: 800px">
       <template #content>
         <div class="img-container">
           <img src="../../assets/logo-register.png" alt="img-card-logo" style="width: 240px;">
@@ -35,15 +36,15 @@ export default {
           <b>EasyPost</b>
         </div>
       </template>
-    </Card>
-    <Card class="form-card" style="width: 600px; height: 800px">
+    </pv-card>
+    <pv-card class="form-card" style="width: 600px; height: 800px">
       <template #content>
         <div class="card-info">
           <div style="text-align: center; font-size: 30px"><b>Registrar nueva cuenta</b></div>
           <br><br>
           <div>
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
-            <Button class="button-a" @click="goToLogin">Iniciar sesion</Button>
+            <pv-button class="button-a" @click="goToLogin">Iniciar sesion</pv-button>
           </div>
           <br>
           <form class="login-form">
@@ -63,17 +64,17 @@ export default {
               <input v-model="password" type="password" placeholder="Repetir contraseña" class="input" id="password">
             </div>
             <div class="form-group">
-              <Button v-if="Client" class="button-a" @click="changeRol">Cliente</Button>
-              <Button v-if="Company" class="button-a" @click="changeRol">Cliente</Button>
+              <pv-button v-if="Client" class="button-a" @click="changeRol">Cliente</pv-button>
+              <pv-button v-if="Company" class="button-a" @click="changeRol">Cliente</pv-button>
 
-              <Button v-if="Client" class="button-a" @click="changeRol">Empresa</Button>
-              <Button v-if="Company" class="button-a" @click="changeRol">Empresa</Button>
+              <pv-button v-if="Client" class="button-a" @click="changeRol">Empresa</pv-button>
+              <pv-button v-if="Company" class="button-a" @click="changeRol">Empresa</pv-button>
             </div>
-            <Button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</Button>
+            <pv-button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</pv-button>
           </form>
         </div>
       </template>
-    </Card>
+    </pv-card>
 
   </div>
 </template>
