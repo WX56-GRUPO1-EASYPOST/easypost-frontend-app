@@ -8,7 +8,6 @@ import 'primevue/resources/themes/md-light-indigo/theme.css';
 // Add PrimeVue Components
 import Card         from 'primevue/card';
 import Button       from 'primevue/button';
-
 import OrderList from 'primevue/orderlist';
 import SelectButton from 'primevue/selectbutton';
 import Sidebar      from 'primevue/sidebar';

@@ -63,10 +63,6 @@ export default {
         this.formErrors.push('El email no es válido.');
       }
 
-      if (!this.isValidEmail(this.email)) {
-        this.formErrors.push('El email no es válido.');
-      }
-
       if (!this.isPasswordStrong(this.password)) {
         this.formErrors.push('La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula y un número.');
       }
@@ -260,6 +256,7 @@ export default {
   opacity: 0.8;
   cursor: pointer;
 }
+
 .button-a:hover {
   opacity: 0.4;
   cursor: pointer;
