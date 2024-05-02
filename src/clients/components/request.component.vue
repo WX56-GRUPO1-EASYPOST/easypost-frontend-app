@@ -34,7 +34,7 @@ const getGoogleMapsUrl = (request) => {
   const address = `${request.ubicacion.direccion}, ${request.ubicacion.distrito}, ${request.ubicacion.provincia}, ${request.ubicacion.departamento}`;
 
   // Construir y retornar la URL del mapa de Google Maps
-  return `https://www.google.com/maps/embed/v1/place?key=AIzaSyC4sRILtwG8CyrHeKvK0_q44WrUKgyT9IE&q=${encodeURIComponent(address)}`;
+  return `https://www.google.com/maps/embed/v1/place?key=CODIGO-API&q=${encodeURIComponent(address)}`;
 }
 
 const showDetails = (request) => {
