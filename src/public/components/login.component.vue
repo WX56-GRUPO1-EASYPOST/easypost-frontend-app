@@ -68,7 +68,7 @@ export default {
             <div class="form-group">
               <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
             </div>
-            <pv-button class="submit-button" style="color: black; background-color: #6FA9AE" @click="login">Ingresar</pv-button>
+            <pv-button class="submit-button" style="background-color: #6FA9AE" @click="login">Ingresar</pv-button>
           </form>
         </div>
       </template>
@@ -165,6 +165,7 @@ export default {
 }
 
 .button-a {
+  background-color: #6FA9AE;
   border-width: 0;
   height: 30px;
   border-color: inherit;

@@ -146,7 +146,7 @@ export default {
               <pv-button v-if="Client" class="button-b" >Empresa</pv-button>
               <pv-button v-if="Company" class="button-a" @click="changeRol">Empresa</pv-button>
             </div>
-            <pv-button class="submit-button" style="color: black; background-color: #6FA9AE" @click="Register">Registrar</pv-button>
+            <pv-button class="submit-button" style="background-color: #6FA9AE" @click="Register">Registrar</pv-button>
           </form>
         </div>
       </template>
@@ -155,7 +155,7 @@ export default {
   </div>
 </template>
 
-<style >
+<style scoped>
 .structure {
   display: flex;
   justify-content: center;
@@ -232,6 +232,9 @@ export default {
 }
 
 .submit-button {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border-width: 0;
   height: 30px;
   border-color: inherit;
@@ -239,13 +242,14 @@ export default {
 }
 
 .button-a {
+  background-color: #6FA9AE;
   border-width: 0;
   height: 30px;
   border-color: inherit;
   border-radius: 10px;
 }
 .button-b {
-  color: gray;
+  background-color: gray;
   border-width: 0;
   height: 30px;
   border-color: inherit;
