@@ -1,8 +1,8 @@
 <script>
-import ContactsListService from "../services/contactsListService.js";
+import ContactsListService from "../components/contact/services/contactsListService.js";
 
 export default {
-  name: 'ContactPage',
+  name: 'contact',
   components: {},
   data() {
 

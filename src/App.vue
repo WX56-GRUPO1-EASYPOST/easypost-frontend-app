@@ -1,9 +1,10 @@
 <script>
-import Footer from "./public/components/footer.component.vue";
-import Toolbar from "./public/components/toolbar.component.vue";
+import Footer from "./shared/components/footer.component.vue";
+import ToolbarContent from "./shared/components/toolbar-content.component.vue";
 export default {
   components: {
-    Toolbar,Footer
+    ToolbarContent,
+    Footer
   },
   computed: {
     shouldShowToolbar() {
@@ -17,7 +18,7 @@ export default {
 }
 </script>
 <template>
-  <Toolbar v-if="shouldShowToolbar"/>
+  <Toolbar-Content v-if="shouldShowToolbar"/>
   <router-view></router-view>
   <Footer v-if="shouldShowFooter"/>
 </template>

@@ -1,10 +1,10 @@
 <script >
 
 import {User} from "../model/user.entity.js";
-import AuthService from '../services/authService';
+import AuthService from '../services/authService.js';
 
 export default {
-  name: "login",
+  name: "register-company",
   components: {},
   data() {
     return {

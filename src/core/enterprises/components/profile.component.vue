@@ -1,10 +1,18 @@
+<script>
+export default {
+  name:"profile"
+
+}
+</script>
+
+
 <template>
   <div class="container">
-    <Card>
+    <pv-card>
       <!-- Encabezado personalizado con imagen, título y frase de resumen -->
       <template #header>
         <div class="header-container">
-          <img src="../../assets/home-images/profile.png" alt="Imagen" class="image">
+          <img src="../../../assets/home-images/profile.png" alt="Imagen" class="image">
           <div class="title-container">
             <h2 class="title">Mis Proyectos</h2>
             <p class="subtitle">Resumen</p>
@@ -30,7 +38,7 @@
 
         </div>
       </template>
-    </Card>
+    </pv-card>
   </div>
 </template>
 
@@ -85,5 +93,3 @@
 }
 </style>
 
-<script setup lang="ts">
-</script>

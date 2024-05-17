@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import requestService from "../services/requestService.js";
-import authService from "../../public/services/authService.js";
+import authService from "../../../public/services/authService.js";
 const requests = ref([]);
 const clients = ref([]);
 const selectedRequest = ref(null);

@@ -1,3 +1,38 @@
+<script>
+import Profile from "../../core/enterprises/components/profile.component.vue";
+
+export default {
+  name: 'Toolbar-Content',
+  components: {Profile},
+  data(){
+    return{
+      visible:false
+    }
+  },
+  methods: {
+    goToProfile() {
+      this.visible=!this.visible
+    },
+    logout() {
+      this.$router.push({ name: 'login'});
+    },
+    goToContact() {
+      // Obtener el ID del usuario de la ruta actual
+      const userId = this.$route.params.userId;
+      this.$router.push({ name: 'contact',params: { userId } });
+    },
+    goToRequests() {
+      // Obtener el ID del usuario de la ruta actual
+      const userId = this.$route.params.userId;
+
+      // Redirigir a la ruta "requests" con el mismo ID
+      this.$router.push({ name: 'requests', params: { userId } });
+    }
+  }
+}
+</script>
+
+
 <template>
   <header>
     <div class="toolbar-content">
@@ -36,34 +71,13 @@
     </div>
   </header>
 
-
+  <pv-dialog v-model:visible="visible" modal :style="{width:'40rem'}">
+    <profile></profile>
+  </pv-dialog>
 
 </template>
 
-<script>
-export default {
-  name: 'Toolbar',
-  methods: {
-    goToProfile() {
-    },
-    logout() {
-      this.$router.push({ name: 'login'});
-    },
-    goToContact() {
-      // Obtener el ID del usuario de la ruta actual
-      const userId = this.$route.params.userId;
-      this.$router.push({ name: 'contact',params: { userId } });
-    },
-    goToRequests() {
-      // Obtener el ID del usuario de la ruta actual
-      const userId = this.$route.params.userId;
 
-      // Redirigir a la ruta "requests" con el mismo ID
-      this.$router.push({ name: 'requests', params: { userId } });
-    }
-  }
-}
-</script>
 
 
 <style scoped>

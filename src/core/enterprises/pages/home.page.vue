@@ -1,6 +1,18 @@
+<script>
+import Projects from "../components/projects.component.vue";
+
+export default{
+  name:"Home",
+  components: {Projects},
+
+
+}
+</script>
+
 <template>
   <div class="container">
-    <pv-card title="Tus Proyectos">
+    <Projects></Projects>
+<!--    <pv-card title="Tus Proyectos">
       <template #content>
         <h2 class="title">Mis Proyectos</h2>
         <div class="projects-container">
@@ -26,7 +38,7 @@
           </pv-card>
         </div>
       </template>
-    </pv-card>
+    </pv-card>-->
   </div>
 </template>
 
@@ -52,5 +64,3 @@
   margin-bottom: 10px;
 }
 </style>
-<script setup lang="ts">
-</script>

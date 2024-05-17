@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'Projects',
+}
+</script>
+
 <template>
   <div class="container">
     <pv-card title="Tus Proyectos">
@@ -16,8 +22,8 @@
                   </div>
                 </div>
                 <div class="image-container">
-                  <img src="../../assets/home-images/ruta.png" alt="Imagen 1" class="project-image">
-                  <img src="../../assets/home-images/user-icon.png" alt="Imagen 2" class="project-image">
+                  <img src="../../../assets/home-images/ruta.png" alt="Imagen 1" class="project-image">
+                  <img src="../../../assets/home-images/user-icon.png" alt="Imagen 2" class="project-image">
                 </div>
               </div>
             </template>
@@ -121,5 +127,3 @@
 }
 </style>
 
-<script setup lang="ts">
-</script>
