@@ -1,20 +1,25 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import LoginComponent from "../public/pages/login.page.vue";
-//import HomeComponent from "../public/pages/home.page.vue";
 import RegisterCompany from "../public/pages/register-company.page.vue";
 import Contact from "../public/pages/contact.page.vue";
-import Home from "../core/enterprises/pages/home.page.vue";
+import EnterpriseHome from "../core/enterprises/pages/enterprise-home.page.vue";
 import RequestComponent from "../core/enterprises/components/request.component.vue";
+import PageNotFound from "../public/pages/PageNotFound.page.vue"
+import Requests from "../core/enterprises/pages/requests.page.vue"
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', redirect: '/login'},
         {path: '/login', component: LoginComponent, name: 'login'},
-        {path: '/home/:userId', component: Home, name: 'home',props:true},
+        //{path: '/home/:userId', component: EnterpriseHome, name: 'enterprise-home',props:true},
+        {path:'/enterprise-home',component:EnterpriseHome},
         {path: '/register-company', component: RegisterCompany, name: 'register-company'},
-        {path: '/requests/:userId', component: RequestComponent, name: 'requests',props:true},
-        {path:'/contact/:userId',component:Contact, name: 'contact',props:true},
+        //{path: '/requests/:userId', component: RequestComponent, name: 'requests',props:true},
+        {path:'/requests',component:Requests},
+        //{path:'/contact/:userId',component:Contact, name: 'contact',props:true},
+        {path:'/contact',component:Contact},
+        {path:'/:pathMatch(.*)*',component:PageNotFound}
 
     ]
 });

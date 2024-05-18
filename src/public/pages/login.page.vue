@@ -29,7 +29,14 @@ export default {
         return;
       }
       const userId = user.id;
-      this.$router.push({path: `/home/${userId}`});
+      localStorage.setItem("userId",userId)
+      //this.$router.push({path: `/home/${userId}`});
+
+      //Si es empresa:
+      this.$router.push({path: '/enterprise-home'});
+
+      //Si es cliente
+      //this.$router.push({path: '/client-home'});
     }
   }
 }
@@ -55,7 +62,8 @@ export default {
           <br><br>
           <div>
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Todavía no te has registrado?</div>
-            <pv-button class="button-a" @click="goToRegister">Crear cuenta</pv-button>
+<!--            <pv-button class="button-a" @click="goToRegister">Crear cuenta</pv-button>-->
+            <router-link to="/register-company">Crear cuenta</router-link>
           </div>
           <br>
           <form class="login-form">
@@ -68,7 +76,7 @@ export default {
             <div class="form-group">
               <input v-model="contrasena" type="password" placeholder="Contraseña" class="input" id="password">
             </div>
-            <pv-button class="submit-button" style="background-color: #6FA9AE" @click="login">Ingresar</pv-button>
+            <a class="submit-button" style="background-color: #6FA9AE" @click="login">Ingresar</a>
           </form>
         </div>
       </template>

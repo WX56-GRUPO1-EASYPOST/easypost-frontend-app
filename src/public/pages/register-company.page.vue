@@ -113,7 +113,7 @@ export default {
           <br><br>
           <div>
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
-            <pv-button class="button-a" @click="goToLogin">Iniciar sesion</pv-button>
+            <button class="button-a" @click="goToLogin">Iniciar sesion</button>
           </div>
           <div v-if="formErrors.length > 0">
             <ul>
@@ -136,13 +136,13 @@ export default {
             </div>
             <div class="form-group">
 
-              <pv-button v-if="Client" class="button-a" @click="changeRol">Cliente</pv-button>
-              <pv-button v-if="Company" class="button-b" >Cliente</pv-button>
+              <button v-if="Client" class="button-a" @click="changeRol">Cliente</button>
+              <button v-if="Company" class="button-b" >Cliente</button>
 
-              <pv-button v-if="Client" class="button-b" >Empresa</pv-button>
-              <pv-button v-if="Company" class="button-a" @click="changeRol">Empresa</pv-button>
+              <button v-if="Client" class="button-b" >Empresa</button>
+              <button v-if="Company" class="button-a" @click="changeRol">Empresa</button>
             </div>
-            <pv-button class="submit-button" style="background-color: #6FA9AE" @click="Register">Registrar</pv-button>
+            <button class="submit-button" style="background-color: #6FA9AE" @click="Register">Registrar</button>
           </form>
         </div>
       </template>
