@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const url = "htpp:localhost:3000"
-const contactsUrl = "/usuarios/2"
+const url = "htpp:localhost:8080"
 
 export default class ContactsListService {
-    getAllContacts() {
-        return axios.get(`${url}${contactsUrl}`)
+    getAllContacts(id) {
+        return axios.get(`${url}/${id}/contacts`)
     }
 }
