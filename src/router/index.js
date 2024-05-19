@@ -3,7 +3,7 @@ import LoginComponent from "../public/pages/login.page.vue";
 import RegisterCompany from "../public/pages/register-company.page.vue";
 import Contacts from "../public/pages/contacts.page.vue";
 import EnterpriseHome from "../core/enterprises/pages/enterprise-home.page.vue";
-import RequestComponent from "../core/enterprises/components/request.component.vue";
+//import RequestComponent from "../core/enterprises/components/request.component.vue";
 import PageNotFound from "../public/pages/PageNotFound.page.vue"
 import Requests from "../core/enterprises/pages/requests.page.vue"
 import ManageProject from "../core/enterprises/pages/manage-project.page.vue"
