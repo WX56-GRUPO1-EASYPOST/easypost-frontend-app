@@ -6,7 +6,7 @@
 
 <template>
   <h1>Route: '{{ $route.path }}' was not found</h1>
-  <router-link to="/login">Ir a Login</router-link>
+  <a href="#" @click="$router.go(-1)">Volver</a>
 </template>
 
 <style scoped>

@@ -21,7 +21,7 @@ const router = createRouter({
         //{path:'/contact/:userId',component:Contact, name: 'contact',props:true},
         {path: '/contact', component: Contacts},
         {path: '/:projectId/manage', component: ManageProject, name: 'manage'},
-        {path: '/:pathMatch(.*)*', component: PageNotFound}
+        {path: '/:pathMatch(.*)*', component: PageNotFound,name:'pageNotFound'}
 
     ]
 });

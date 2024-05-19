@@ -9,6 +9,9 @@ export default {
   },
   computed: {
     shouldShow() {
+      if(this.$route.name==='pageNotFound'){
+        return false;
+      }
       return this.$route.path !== "/login" && this.$route.path !== "/register-company";
     }
   }
