@@ -6,13 +6,19 @@ export default {
   components: {Profile},
   data() {
     return {
-      visible: false
+      visible: false,
+      currentUser:null
     }
+  },
+  created() {
+      let temp=localStorage.getItem("user");
+      this.currentUser=JSON.parse(temp);
   },
   methods: {
     logout() {
       //removeUserId con localstorage()
       localStorage.removeItem('userId');
+      localStorage.removeItem("user")
       this.$router.push({name: 'login'});
     },
     goToHome() {
@@ -46,11 +52,21 @@ export default {
       </button>
     </div>
 
-    <div class="toolbar-item">
+    <div class="toolbar-item" v-if="currentUser.role==='empresa'">
       <router-link to="/requests" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
           <span class="icon-text">Ver solicitudes</span>
+        </div>
+      </router-link>
+    </div>
+
+<!--    Boton Explorar solo para cliente-->
+    <div class="toolbar-item" v-if="currentUser.role==='cliente'">
+      <router-link to="" style="text-decoration: none">
+        <div class="toolbar-item-content">
+          <img src="../../assets/busqueda.png" alt="Solicitudes">
+          <span class="icon-text">Explorar</span>
         </div>
       </router-link>
     </div>

@@ -30,6 +30,14 @@ export default {
       }
       const userId = user.id;
       localStorage.setItem("userId",userId)
+
+      //Guardando objeto 'user' en localStorage
+      let currentUser={
+        id:userId,
+        role:user.role
+      }
+      localStorage.setItem("user",JSON.stringify(currentUser))
+
       //this.$router.push({path: `/home/${userId}`});
 
       //Si es empresa:
