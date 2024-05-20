@@ -62,7 +62,8 @@ export default {
     }
   },
   mounted() {
-    let id = localStorage.getItem("userId")
+    let user=JSON.parse(localStorage.getItem("user"))
+    let id = user.id
     this.contactsListService.getAllContacts(id)
         .then(response => {
           this.contactsList = response.data;
@@ -74,14 +75,14 @@ export default {
       //this.messagesServices.postMessage(this.message).then(res=>{})
       this.message = ""
     },
-    openChat(contactId) {
-      //console.log(contactId)
-      this.currentContact=contactId
+    openChat(contact) {
+      let currentContactId=contact.id
+      this.currentContact=contact
       /*this.messagesService.getAllMessages(contactId).then(response=>{
         this.messagesList=response.data
       })
       */
-      this.messagesList=this.contactsList.find(contact => contact.id === this.currentContact).messagesList
+      this.messagesList=this.contactsList.find(contact => contact.id === currentContactId).messagesList
     }
   }
 }
@@ -106,6 +107,10 @@ export default {
 
     <div v-if="currentContact!=null">
       <div class="chat">
+        <div class="current-contact">
+          <img :src="currentContact.urlToImage" :alt="currentContact.contactName">
+          <p>{{currentContact.contactName}}</p>
+        </div>
         <div>
           <div class="messages-container">
             <ul>
@@ -161,9 +166,24 @@ export default {
   padding: 5px 18px;
 }
 
+.current-contact{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:space-around;
+  border: 1px solid black;
+  border-radius: 8px;
+  height:55px;
+  background-color: #17c689;
+}
+.current-contact img{
+  width:20px;
+  height: auto;
+}
 .messages-container {
   background-color: white;
-  height: 345px;
+  /*height: 345px;*/
+  height:290px;
   overflow-x: hidden;
   overflow-y: auto;
   /*margin-right:20px;*/

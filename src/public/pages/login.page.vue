@@ -29,8 +29,6 @@ export default {
         return;
       }
       const userId = user.id;
-      localStorage.setItem("userId",userId)
-
       //Guardando objeto 'user' en localStorage
       let currentUser={
         id:userId,
@@ -38,13 +36,13 @@ export default {
       }
       localStorage.setItem("user",JSON.stringify(currentUser))
 
-      //this.$router.push({path: `/home/${userId}`});
-
       //Si es empresa:
-      this.$router.push({path: '/enterprise-home'});
-
-      //Si es cliente
-      //this.$router.push({path: '/client-home'});
+      if(user.role==='empresa') {
+        this.$router.push({path: '/enterprise-home'});
+      }else if (user.role==='cliente') {
+        //Si es cliente
+        this.$router.push({path: '/client-home'});
+      }else console.log("Error")
     }
   }
 }
@@ -70,7 +68,6 @@ export default {
           <br><br>
           <div>
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Todavía no te has registrado?</div>
-<!--            <pv-button class="button-a" @click="goToRegister">Crear cuenta</pv-button>-->
             <router-link to="/register-company">Crear cuenta</router-link>
           </div>
           <br>

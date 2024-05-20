@@ -11,8 +11,9 @@ export default {
     }
   },
   mounted() {
-    let id = localStorage.getItem("userId")
-    this.profileService.getProfileById(id)
+
+    let user=JSON.parse(localStorage.getItem("user"))
+    this.profileService.getProfileById(user.id)
         .then(response => {
           this.profile = response.data;
         })

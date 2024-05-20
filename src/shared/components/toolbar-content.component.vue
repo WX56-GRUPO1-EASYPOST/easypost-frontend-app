@@ -16,18 +16,9 @@ export default {
   },
   methods: {
     logout() {
-      //removeUserId con localstorage()
-      localStorage.removeItem('userId');
+      //remover user del localstorage()
       localStorage.removeItem("user")
       this.$router.push({name: 'login'});
-    },
-    goToHome() {
-      //this.$router.push({name: 'enterprise-home'});
-    },
-    goToContact() {
-      // Obtener el ID del usuario de la ruta actual
-      const userId = this.$route.params.userId;
-      //this.$router.push({name: 'contact', params: {userId}});
     },
     goToRequests() {
       // Obtener el ID del usuario de la ruta actual

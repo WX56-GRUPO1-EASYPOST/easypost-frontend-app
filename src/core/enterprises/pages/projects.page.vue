@@ -35,7 +35,8 @@ export default {
     }
   },
   mounted(){
-    let id=localStorage.getItem("userId")
+    let user=JSON.parse(localStorage.getItem("user"))
+    let id = user.id;
     this.projectsService.getEnterpriseProjects(id)
         .then(response => {
           this.projectsList=response.data;
