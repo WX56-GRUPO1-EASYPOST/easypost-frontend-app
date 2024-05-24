@@ -4,20 +4,19 @@ import {ContactEntity} from "../model/contact.entity.js";
 export default {
   name: "contact",
   props:{
-    contact:ContactEntity
+    contact: {required: true}
   },
   methods:{
-
   }
 }
 </script>
 
 <template>
   <pv-card @click="$emit('currentContact',contact)">
-    <template #title>{{contact.contactName}}</template>
-    <template #content>
+    <template #title>{{contact.name}}</template>
+    <!--<template #content>
       <img :src="contact.urlToImage" :alt="contact.contactName" class="contact-image">
-    </template>
+    </template>-->
   </pv-card>
 </template>
 

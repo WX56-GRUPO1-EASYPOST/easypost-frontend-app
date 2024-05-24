@@ -12,62 +12,22 @@ export default {
       message: '',
       currentContact: null,
       messagesList: [],
-      contactsList: [
-        {
-          id: 1,
-          contactName: "John Doe",
-          urlToImage: "image1",
-          messagesList: [
-            {message: "texto1"},
-            {message: "texto2"},
-            {message: "texto3"},
-            {message: "texto4"},
-            {message: "texto5"},
-          ]
-        },
-        {
-          id: 2,
-          contactName: "Juan Perez",
-          urlToImage: "image1",
-          messagesList: [
-            {message: "texto1"},
-            {message: "texto2"}
-          ]
-        },
-        {
-          id: 3,
-          contactName: "Luis Galvez",
-          urlToImage: "image1",
-          messagesList: [
-            {message: "texto1"},
-            {message: "texto2"},
-            {message: "texto3"},
-            {message: "texto4"}
-          ]
-        },
-        {
-          id: 4,
-          contactName: "Sofia Luna",
-          urlToImage: "image1",
-          messagesList: [
-            {message: "texto1"},
-            {message: "texto2"},
-            {message: "texto3"},
-            {message: "texto4"},
-            {message: "texto5"},
-          ]
-        }
-      ],
+      contactsList: [],
       contactsListService: new ContactsListService()
     }
   },
   mounted() {
     let user=JSON.parse(localStorage.getItem("user"))
     let id = user.id
-    this.contactsListService.getAllContacts(id)
+    this.contactsListService.getUserById(id)
         .then(response => {
-          this.contactsList = response.data;
-        })
+          const user = response.data;
+
+          this.contactsListService.getContactsByIds(user.contactos)
+              .then(response => {
+                this.contactsList = response.data;
+              });
+        });
   },
   methods: {
     sendMessage() {
@@ -108,8 +68,8 @@ export default {
     <div v-if="currentContact!=null">
       <div class="chat">
         <div class="current-contact">
-          <img :src="currentContact.urlToImage" :alt="currentContact.contactName">
-          <p>{{currentContact.contactName}}</p>
+          <!--<img :src="currentContact.urlToImage" :alt="currentContact.contactName">-->
+          <p>{{currentContact.name}}</p>
         </div>
         <div>
           <div class="messages-container">
