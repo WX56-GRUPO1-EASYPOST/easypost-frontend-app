@@ -19,6 +19,10 @@ export default class ContactsListApiService {
         return axios.get(`${API_URL}/messages/${messageId}`)
     }
 
+    getAllMessages(){
+        return axios.get(`${API_URL}/messages`)
+    }
+
     getChat(enterpriseId,clientId){
 
     }

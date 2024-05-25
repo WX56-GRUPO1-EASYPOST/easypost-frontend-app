@@ -50,10 +50,16 @@ export default {
       let id = parseInt(user.id)
 
       //calcular el id apropiado para el mensaje
-
-      this.messagesList.push(new MessageEntity(30, this.message,id))
-      //this.messagesServices.postMessage(this.message).then(res=>{})
-      this.message = ""
+      let length=0
+      this.contactsListService.getAllMessages()
+          .then(res=>{
+            length=res.data.length
+            return length
+          })
+          .then(size=>{
+            this.messagesList.push(new MessageEntity(size+1, this.message,id))
+            this.message = ""
+          })
     },
     openChat(params) {
       let contact=params.param1
@@ -64,6 +70,7 @@ export default {
       }else{
         this.chatIsOpen=params.param2
       }
+      this.messagesList=[]
       //id del contacto que has elegido
       let currentContactId = parseInt(contact.id)
       this.currentContact = contact
