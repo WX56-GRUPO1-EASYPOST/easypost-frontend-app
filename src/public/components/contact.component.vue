@@ -5,7 +5,8 @@ export default {
   name: "contact",
   props:{
     /*contact: {required: true}*/
-    contact:ContactEntity
+    contact:ContactEntity,
+    open:{default: false},
   },
   methods:{
   }

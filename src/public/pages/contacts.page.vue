@@ -13,6 +13,7 @@ export default {
 
     return {
       message: '',
+      chatIsOpen:false,
       currentContact: null,
       messagesList: [],
       contactsList: [],
@@ -69,10 +70,10 @@ export default {
       }
 
       let count = 1
-      chat.messagesList.forEach(item => {
-        this.getMessage(item, count)
+      for (let item of chat.messagesList){
+        await this.getMessage(item, count)
         count += 1
-      })
+      }
 
     },
     async getMessage(messageId, count) {
@@ -92,7 +93,7 @@ export default {
       <div class="contacts-list-container">
         <div v-if="contactsList.length!==0">
           <div v-for="contact in contactsList" :key="contact.id" class="contact-card">
-            <contact :contact="contact" @currentContact="openChat"></contact>
+            <contact :contact="contact" :open="chatIsOpen"  @currentContact="openChat"></contact>
           </div>
         </div>
         <div v-else>
