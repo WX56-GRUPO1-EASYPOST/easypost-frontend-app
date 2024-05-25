@@ -7,6 +7,7 @@ import PageNotFound from "../public/pages/PageNotFound.page.vue"
 import Requests from "../core/enterprises/pages/requests.page.vue"
 import ManageProject from "../core/enterprises/pages/manage-project.page.vue"
 import ClientHome from "../core/clients/pages/client-home.page.vue"
+import RequestForm from "../core/clients/pages/request-form.page.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -19,7 +20,8 @@ const router = createRouter({
         {path: '/contact', component: Contacts},
         {path: '/:projectId/manage', component: ManageProject, name: 'manage'},
         {path:'/client-home',component:ClientHome},
-        {path: '/:pathMatch(.*)*', component: PageNotFound,name:'pageNotFound'}
+        {path: '/:pathMatch(.*)*', component: PageNotFound,name:'pageNotFound'},
+        {path: '/:enterpriseId/request', component: RequestForm}
 
     ]
 });
