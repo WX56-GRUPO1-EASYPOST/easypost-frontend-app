@@ -14,7 +14,8 @@ export default {
 </script>
 
 <template>
-  <pv-card @click="$emit('currentContact',contact)">
+<!--  <pv-card @click="$emit('currentContact',contact)">-->
+  <pv-card @click="$emit('currentContact',{param1:contact,param2:true})">
     <template #title>{{contact.name}}</template>
     <template #content>
       <img :src="contact.urlToImage" :alt="contact.name" class="contact-image">

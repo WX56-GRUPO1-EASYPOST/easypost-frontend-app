@@ -43,11 +43,27 @@ export default {
 
     },
     sendMessage() {
-      this.messagesList.push({message: this.message})
+      if(this.message===""){
+        return
+      }
+      let user = JSON.parse(localStorage.getItem("user"))
+      let id = parseInt(user.id)
+
+      //calcular el id apropiado para el mensaje
+
+      this.messagesList.push(new MessageEntity(30, this.message,id))
       //this.messagesServices.postMessage(this.message).then(res=>{})
       this.message = ""
     },
-    openChat(contact) {
+    openChat(params) {
+      let contact=params.param1
+      if(this.chatIsOpen===true && contact!==this.currentContact){
+        this.chatIsOpen=params.param2
+      }else if(this.chatIsOpen===true && contact===this.currentContact){
+        return
+      }else{
+        this.chatIsOpen=params.param2
+      }
       //id del contacto que has elegido
       let currentContactId = parseInt(contact.id)
       this.currentContact = contact
