@@ -3,14 +3,14 @@ import {MessageEntity} from "../model/message.entity.js";
 
 export default {
   name: "chat-message",
-  props:{
-    message:MessageEntity
+  props: {
+    message: MessageEntity
   }
 }
 </script>
 
 <template>
-<p class="auto-width">{{message.message}}</p>
+  <p class="auto-width">{{ message.content }}</p>
 </template>
 
 <style scoped>

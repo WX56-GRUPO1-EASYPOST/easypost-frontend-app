@@ -1,5 +1,7 @@
 export class MessageEntity{
-    constructor(message=""){
-        this.message = message;
+    constructor(id=0,content="",sender=0){
+        this.id=id;
+        this.content = content;
+        this.sender = sender;
     }
 }

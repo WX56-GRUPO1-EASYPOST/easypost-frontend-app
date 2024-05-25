@@ -1,7 +1,10 @@
 <script>
-import ContactsListService from "../services/contactsListService.js";
+import ContactsListApiService from "../services/contactsListApi.service.js";
 import Contact from "../components/contact.component.vue";
 import ChatMessage from "../components/chat-message.component.vue";
+import AuthService from "../services/authService.js";
+import {ContactEntity} from "../model/contact.entity.js";
+import {MessageEntity} from "../model/message.entity.js";
 
 export default {
   name: 'contacts',
@@ -13,36 +16,69 @@ export default {
       currentContact: null,
       messagesList: [],
       contactsList: [],
-      contactsListService: new ContactsListService()
+      contactsListService: new ContactsListApiService()
     }
   },
   mounted() {
-    let user=JSON.parse(localStorage.getItem("user"))
+    let user = JSON.parse(localStorage.getItem("user"))
     let id = user.id
-    this.contactsListService.getUserById(id)
-        .then(response => {
-          const user = response.data;
-
-          this.contactsListService.getContactsByIds(user.contactos)
-              .then(response => {
-                this.contactsList = response.data;
-              });
-        });
+    this.getData(id)
   },
   methods: {
+    async getData(id) {
+      let response1 = await this.contactsListService.getContactsListIdByUserId(id);
+      let contactsListId = response1.data.contactsListId;
+
+      let response2 = await this.contactsListService.getContactsList(contactsListId);
+      let list = response2.data.contacts;
+
+      list.forEach(item => {
+        AuthService.getUserById(item)
+            .then(response => {
+              let user = response.data
+              this.contactsList.push(new ContactEntity(user.id, user.name, "image"))
+            })
+      })
+
+    },
     sendMessage() {
-      this.messagesList.push({message:this.message})
+      this.messagesList.push({message: this.message})
       //this.messagesServices.postMessage(this.message).then(res=>{})
       this.message = ""
     },
     openChat(contact) {
-      let currentContactId=contact.id
-      this.currentContact=contact
-      /*this.messagesService.getAllMessages(contactId).then(response=>{
-        this.messagesList=response.data
+      //id del contacto que has elegido
+      let currentContactId = parseInt(contact.id)
+      this.currentContact = contact
+
+      let user = JSON.parse(localStorage.getItem("user"))
+      let id = parseInt(user.id)
+      let role = user.role
+
+      this.getChats(id, currentContactId, role)
+    },
+    async getChats(currentUserId, currentContactId, role) {
+      let response1 = await this.contactsListService.getAllChats()
+      let allChats = response1.data
+
+      let chat = {}
+      if (role === 'empresa') {
+        chat = allChats.find(item => item.enterpriseId === currentUserId && item.clientId === currentContactId)
+      } else if (role === 'cliente') {
+        chat = allChats.find(item => item.clientId === currentUserId && item.enterpriseId === currentContactId)
+      }
+
+      let count = 1
+      chat.messagesList.forEach(item => {
+        this.getMessage(item, count)
+        count += 1
       })
-      */
-      this.messagesList=this.contactsList.find(contact => contact.id === currentContactId).messagesList
+
+    },
+    async getMessage(messageId, count) {
+      let response = await this.contactsListService.getMessageById(messageId)
+      let message = response.data
+      this.messagesList.push(new MessageEntity(count, message.content, message.sender))
     }
   }
 }
@@ -69,12 +105,12 @@ export default {
       <div class="chat">
         <div class="current-contact">
           <!--<img :src="currentContact.urlToImage" :alt="currentContact.contactName">-->
-          <p>{{currentContact.name}}</p>
+          <p>{{ currentContact.name }}</p>
         </div>
         <div>
           <div class="messages-container">
             <ul>
-              <li v-for="msg in messagesList" :key="msg.message">
+              <li v-for="msg in messagesList" :key="msg.id">
                 <chat-message :message="msg"></chat-message>
               </li>
             </ul>
@@ -126,24 +162,26 @@ export default {
   padding: 5px 18px;
 }
 
-.current-contact{
+.current-contact {
   display: flex;
   flex-direction: row;
-  align-items:center;
-  justify-content:space-around;
+  align-items: center;
+  justify-content: space-around;
   border: 1px solid black;
   border-radius: 8px;
-  height:55px;
+  height: 55px;
   background-color: #17c689;
 }
-.current-contact img{
-  width:20px;
+
+.current-contact img {
+  width: 20px;
   height: auto;
 }
+
 .messages-container {
   background-color: white;
   /*height: 345px;*/
-  height:290px;
+  height: 290px;
   overflow-x: hidden;
   overflow-y: auto;
   /*margin-right:20px;*/

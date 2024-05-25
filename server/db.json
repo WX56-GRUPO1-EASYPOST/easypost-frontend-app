@@ -6,7 +6,7 @@
       "email": "usuario1@example.com",
       "password": "pass123",
       "role": "cliente",
-      "contactos": ["2", "308"]
+      "contactsListId": 1
     },
     {
       "id": "2",
@@ -14,16 +14,7 @@
       "email": "usuario2@example.com",
       "password": "pass456",
       "role": "empresa",
-      "contactos": ["1", "308"]
-    },
-    {
-      "id": "308",
-      "name": "miguel",
-      "email": "miguel@gmail.com",
-      "password": "Miguel123",
-      "rol": "cliente",
-      "role": "empresa",
-      "contactos": ["1", "2"]
+      "contactsListId": 2
     },
     {
       "id": "3",
@@ -31,7 +22,7 @@
       "email": "usuario3@example.com",
       "password": "pass789",
       "role": "cliente",
-      "contactos": ["1", "2", "308"]
+      "contactsListId": 3
     },
     {
       "id": "4",
@@ -39,7 +30,7 @@
       "email": "usuario4@example.com",
       "password": "pass1011",
       "role": "empresa",
-      "contactos": ["1", "2", "308", "3"]
+      "contactsListId": 4
     },
     {
       "id": "5",
@@ -47,7 +38,171 @@
       "email": "usuario5@example.com",
       "password": "pass1213",
       "role": "cliente",
-      "contactos": ["1", "2", "308", "3", "4"]
+      "contactsListId": 5
+    },
+    {
+      "id": "308",
+      "name": "miguel",
+      "email": "miguel@gmail.com",
+      "password": "Miguel123",
+      "role": "empresa",
+      "contactsListId": 6
+    }
+  ],
+  "contactsList": [
+    {
+      "id": 1,
+      "userId": 1,
+      "contacts": [
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "contacts": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "contacts": [
+        308
+      ]
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "contacts": [
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "userId": 5,
+      "contacts": [
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "userId": 308,
+      "contacts": [
+        3
+      ]
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "enterpriseId": 2,
+      "clientId": 1,
+      "messagesList": [1,2,3,4,5,6]
+    },
+    {
+      "id": 2,
+      "enterpriseId": 308,
+      "clientId": 3,
+      "messagesList": [7,8,9,10,11,12]
+    },
+    {
+      "id": 3,
+      "enterpriseId": 4,
+      "clientId": 5,
+      "messagesList": [13,14,15,16,17,18]
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "content": "empresa2 texto1",
+      "sender": 2
+    },
+    {
+      "id": 2,
+      "content": "cliente1 texto1",
+      "sender": 1
+    },
+    {
+      "id": 3,
+      "content": "empresa2 texto2",
+      "sender": 2
+    },
+    {
+      "id": 4,
+      "content": "cliente1 texto1",
+      "sender": 1
+    },
+    {
+      "id": 5,
+      "content": "empresa2 texto3",
+      "sender": 2
+    },
+    {
+      "id": 6,
+      "content": "cliente1 texto3",
+      "sender": 1
+    },
+    {
+      "id": 7,
+      "content": "empresa308 texto1",
+      "sender": 308
+    },
+    {
+      "id": 8,
+      "content": "cliente3 texto1",
+      "sender": 3
+    },
+    {
+      "id": 9,
+      "content": "empresa308 texto2",
+      "sender": 308
+    },
+    {
+      "id": 10,
+      "content": "cliente3 texto1",
+      "sender": 3
+    },
+    {
+      "id": 11,
+      "content": "empresa308 texto3",
+      "sender": 308
+    },
+    {
+      "id": 12,
+      "content": "cliente3 texto3",
+      "sender": 3
+    },
+    {
+      "id": 13,
+      "content": "empresa4 texto1",
+      "sender": 4
+    },
+    {
+      "id": 14,
+      "content": "cliente5 texto1",
+      "sender": 5
+    },
+    {
+      "id": 15,
+      "content": "empresa4 texto2",
+      "sender": 4
+    },
+    {
+      "id": 16,
+      "content": "cliente5 texto1",
+      "sender": 5
+    },
+    {
+      "id": 17,
+      "content": "empresa4 texto3",
+      "sender": 4
+    },
+    {
+      "id": 18,
+      "content": "cliente5 texto3",
+      "sender": 5
     }
   ],
   "requests": [
