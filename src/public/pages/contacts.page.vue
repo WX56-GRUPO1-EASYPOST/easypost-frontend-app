@@ -110,7 +110,7 @@ export default {
 
 <template>
   <div class="contact-container">
-    <div class="clients">
+    <div class="contacts-section">
       <h2>Contactos</h2>
       <hr>
       <div class="contacts-list-container">
@@ -128,13 +128,14 @@ export default {
     <div v-if="currentContact!=null">
       <div class="chat">
         <div class="current-contact">
-          <!--<img :src="currentContact.urlToImage" :alt="currentContact.contactName">-->
+          <img src="" :alt="currentContact.name">
           <p>{{ currentContact.name }}</p>
         </div>
         <div>
           <div class="messages-container">
             <ul>
-              <li v-for="msg in messagesList" :key="msg.id">
+              <li v-for="msg in messagesList" :key="msg.id"
+                  :class="{receiver:msg.sender===parseInt(currentContact.id)}">
                 <chat-message :message="msg"></chat-message>
               </li>
             </ul>
@@ -166,7 +167,7 @@ export default {
   justify-content: space-around;
 }
 
-.clients {
+.contacts-section {
   text-align: center;
   background-color: #dcdcdc;
   height: 400px;
@@ -190,16 +191,19 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  /*justify-content: space-around;*/
   border: 1px solid black;
   border-radius: 8px;
   height: 55px;
   background-color: #17c689;
 }
-
+.current-contact > *{
+  padding-left:15px;
+}
 .current-contact img {
-  width: 20px;
+  width: 40px;
   height: auto;
+  font-size: 10px;
 }
 
 .messages-container {
@@ -212,6 +216,10 @@ export default {
   text-align: right;
   border: 1px solid black;
   border-radius: 8px;
+}
+
+.receiver{
+  text-align: left;
 }
 
 .messages-container ul {
@@ -227,5 +235,47 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 520px){
+  .contact-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .contacts-section{
+    /*height: 200px;*/
+    height: 100%;
+    width: 100%;
+  }
+  .contacts-section h2{
+    font-size:15px;
+  }
+  .contacts-section hr{
+    margin:0;
+  }
+  .contacts-list-container {
+    /*height: 200px;*/
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 0;
+  }
+  .contact-card{
+    padding: 0 5px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+  }
+  .chat{
+    width:100%;
+  }
+
+  .messages-container {
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*margin-right:20px;*/
+    text-align: right;
+  }
 }
 </style>

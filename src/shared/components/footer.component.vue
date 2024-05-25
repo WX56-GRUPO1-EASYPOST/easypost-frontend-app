@@ -32,12 +32,11 @@ footer {
   width: 100%;
   background-color: #333;
   color: white;
-  padding: 0.1rem;
+  /*padding: 0.1rem;*/
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  /*max-width: 1200px;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,5 +55,10 @@ footer {
 .footer-item.logo img {
   width: 60px;
 
+}
+@media screen and (max-width: 520px){
+  .footer-item p{
+    font-size:8px;
+  }
 }
 </style>

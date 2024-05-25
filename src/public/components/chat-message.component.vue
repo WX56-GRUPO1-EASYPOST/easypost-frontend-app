@@ -18,5 +18,7 @@ export default {
   display: inline-block;
   background-color: lightblue;
   padding: 5px;
+  border: none;
+  border-radius: 8px;
 }
 </style>
