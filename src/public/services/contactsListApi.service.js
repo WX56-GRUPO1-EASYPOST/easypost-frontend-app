@@ -23,12 +23,18 @@ export default class ContactsListApiService {
         return axios.get(`${API_URL}/messages`)
     }
 
+    postMessage(data){
+        return axios.post(`${API_URL}/messages`,data)
+    }
+
+    postMessageInChat(data,id,currentContactId,chat){
+        //SERÍA UN PUT o PATCH
+        return axios.post(`${API_URL}/chats/${chatId}`,data.id )
+    }
+
     getChat(enterpriseId,clientId){
 
     }
-
-
-
     getUserById(userId) {
         const url = `${API_URL}/${userId}`;
         return axios.get(url);

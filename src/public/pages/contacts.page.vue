@@ -58,6 +58,28 @@ export default {
           })
           .then(size=>{
             this.messagesList.push(new MessageEntity(size+1, this.message,id))
+            /*let data=new MessageEntity(size+1,this.message,id)
+            this.contactsListService.postMessage(data)
+                .then(res=>{
+                  //this.contactsListService.postMessageInChat(data,id,parseInt(this.currentContact.id))
+                  let allChats=[]
+                  let role=user.role
+                  this.contactsListService.getAllMessages()
+                      .then(response=>{
+                        allChats=response.data;
+                        let chat = {}
+                        if (role === 'empresa') {
+                          chat = allChats.find(item => item.enterpriseId === id && item.clientId === parseInt(this.currentContact.id))
+                        } else if (role === 'cliente') {
+                          chat = allChats.find(item => item.clientId === parseInt(this.currentContact.id) && item.enterpriseId === id)
+                        }
+                        console.log("Chat id: ",chat.id)
+                        console.log("Ingresando id de mensaje: ",data.id," en messages list")
+                        console.log("Lista de mensajes entre usuario ",id," y usuario ",parseInt(this.currentContact.id))
+                        console.log(chat.messagesList)
+                        //this.contactsListService.postMessageInChat(data,id,parseInt(this.currentContact.id),chat)
+                      })
+                })*/
             this.message = ""
           })
     },
