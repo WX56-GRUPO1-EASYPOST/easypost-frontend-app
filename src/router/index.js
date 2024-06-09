@@ -20,12 +20,11 @@ const router = createRouter({
         {path: '/register-company', component: RegisterCompany, name: 'register-company'},
         {path: '/requests', component: Requests},
         {path: '/contact', component: Contacts},
-        {path: '/:projectId/manage', component: ManageProject, name: 'manage'},
+        {path: '/:projectId/manage', component: Gestionar, name: 'manage'},
         {path:'/client-home',component:ClientHome},
         {path: '/:pathMatch(.*)*', component: PageNotFound,name:'pageNotFound'},
         {path: '/:enterpriseId/request', component: RequestForm},
         {path: '/:enterpriseId/dashboard', component: DashboardPage},
-        {path: '/gestionar', component: Gestionar }
 
     ]
 });

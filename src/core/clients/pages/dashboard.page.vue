@@ -13,6 +13,7 @@ export default {
       enterprise:User,
       documentChecked: false, // Estado para el checkbox
       openDialog:false,
+      progressbar: 99,
     };
   },
   mounted() {
@@ -108,10 +109,25 @@ export default {
 
         </template>
       </pv-card>
-
     </div>
 
+
+
     <div class="right-column">
+
+
+      <div class="project-progress-bar">
+        <h2>Progreso: </h2>
+
+        <div>
+        <pv-progress-bar :value= "progressbar"></pv-progress-bar>
+        </div>
+
+        <h2>{{progressbar}}%</h2>
+
+      </div>
+
+
       <div class="request-form-attach">
         <pv-card style="margin:5px">
           <template #title>
@@ -199,6 +215,11 @@ export default {
   margin-right: 5px;
 }
 
+.project-progress-bar {
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+}
+
 .progress-text {
   font-size: 14px;
   color: black;
@@ -270,5 +291,6 @@ export default {
   .subtitle {
     text-align: center;
   }
+
 }
 </style>

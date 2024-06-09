@@ -3,7 +3,12 @@ import TicketForm from "../../core/clients/components/ticket-form.component.vue"
 
 export default {
   name: "gestionar",
-  components: {TicketForm}
+  components: {TicketForm},
+  data () {
+    return {
+      progressbar: 80
+    };
+  }
 }
 </script>
 
@@ -67,10 +72,24 @@ export default {
 
         </template>
       </pv-card>
-
     </div>
 
+
+
     <div class="right-column">
+
+      <div class="project-progress-bar">
+        <h2>Progreso: </h2>
+
+        <div>
+          <pv-progress-bar :value= "progressbar"></pv-progress-bar>
+        </div>
+
+        <h2>{{progressbar}}%</h2>
+
+      </div>
+
+
       <div class="request-form-attach">
         <pv-card style="margin:5px">
           <template #title>

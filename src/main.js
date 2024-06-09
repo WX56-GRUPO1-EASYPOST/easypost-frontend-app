@@ -29,6 +29,7 @@ import FileUpload from "primevue/fileupload";
 import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 import Textarea from "primevue/textarea";
+import ProgressBar from "primevue/progressbar";
 
 
 createApp(App)
@@ -44,4 +45,5 @@ createApp(App)
     .component('pv-checkbox', Checkbox)
     .component('pv-dropdown', Dropdown)
     .component('pv-textarea', Textarea)
+    .component('pv-progress-bar', ProgressBar)
     .mount('#app')
