@@ -20,12 +20,20 @@ export default {
 <template>
 
   <Toolbar-Content v-if="shouldShow"></Toolbar-Content>
+  <body>
   <router-view></router-view>
+  </body>
+
   <Footer v-if="shouldShow"></Footer>
 
 </template>
 
 <style>
 
+body
+{
+  background-color: #AAFFC2FF;
+
+}
 
 </style>
