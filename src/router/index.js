@@ -8,6 +8,8 @@ import Requests from "../core/enterprises/pages/requests.page.vue"
 import ManageProject from "../core/enterprises/pages/manage-project.page.vue"
 import ClientHome from "../core/clients/pages/client-home.page.vue"
 import RequestForm from "../core/clients/pages/request-form.page.vue";
+import DashboardPage from "../core/clients/pages/dashboard.page.vue";
+import Gestionar from "../public/pages/gestionar.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,10 +20,11 @@ const router = createRouter({
         {path: '/register-company', component: RegisterCompany, name: 'register-company'},
         {path: '/requests', component: Requests},
         {path: '/contact', component: Contacts},
-        {path: '/:projectId/manage', component: ManageProject, name: 'manage'},
+        {path: '/:projectId/manage', component: Gestionar, name: 'manage'},
         {path:'/client-home',component:ClientHome},
         {path: '/:pathMatch(.*)*', component: PageNotFound,name:'pageNotFound'},
-        {path: '/:enterpriseId/request', component: RequestForm}
+        {path: '/:enterpriseId/request', component: RequestForm},
+        {path: '/:projectId/dashboard', component: DashboardPage},
 
     ]
 });

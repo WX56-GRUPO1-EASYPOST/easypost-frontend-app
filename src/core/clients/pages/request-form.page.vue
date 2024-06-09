@@ -36,6 +36,22 @@ export default {
           <h3>{{enterprise.name}}</h3>
           <img src="" :alt="enterprise.name">
           <div class="request-form-inputs">
+            <pv-float-label>
+              <pv-input-text id="presupuesto"></pv-input-text>
+              <label for="departamento">Presupuesto</label>
+            </pv-float-label>
+            <pv-float-label>
+              <pv-input-text id="motivo"></pv-input-text>
+              <label for="departamento">Motivo</label>
+            </pv-float-label>
+            <pv-float-label>
+              <pv-input-text id="plazo"></pv-input-text>
+              <label for="departamento">Plazo estimado</label>
+            </pv-float-label>
+            <pv-float-label>
+              <pv-input-text id="ubicación"></pv-input-text>
+              <label for="departamento">Ubicación</label>
+            </pv-float-label>
           <pv-float-label>
             <pv-input-text id="departamento"></pv-input-text>
             <label for="departamento">Departamento</label>
@@ -48,28 +64,46 @@ export default {
             <pv-input-text id="distrito"></pv-input-text>
             <label for="distrito">Distrito</label>
           </pv-float-label>
-            <pv-float-label>
-              <pv-input-text id="presupuesto"></pv-input-text>
-              <label for="presupuesto">Presupuesto</label>
-            </pv-float-label>
           </div>
         </template>
       </pv-card>
     </div>
+
+
     <div class="request-form-attach">
-      <div class="attach-images">
-        adjuntar imagen
-      </div>
-      <div class="attach-location">
-        adjuntar ubicacion
-      </div>
+      <pv-card style="margin:5px">
+        <template #title>
+          <h2>Adjuntar Imagen</h2>
+          <hr>
+        </template>
+        <template #content>
+          <div class="attach-images">
+            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Imagen" />
+          </div>
+        </template>
+      </pv-card>
+
+      <pv-card style="margin:5px">
+        <template #title>
+          <h2>Adjuntar Ubicación</h2>
+          <hr>
+        </template>
+        <template #content>
+          <div class="attach-location">
+            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Archivo" />
+          </div>
+        </template>
+      </pv-card>
+
       <div class="send-request">
         <pv-button>
-          Realizar solicitud
+          Enviar solicitud
         </pv-button>
       </div>
     </div>
   </div>
+
+
 </template>
 
 <style scoped>

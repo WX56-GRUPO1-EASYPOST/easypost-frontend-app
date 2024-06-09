@@ -54,7 +54,7 @@ export default {
 
 <!--    Boton Explorar solo para cliente-->
     <div class="toolbar-item" v-if="currentUser.role==='cliente'">
-      <router-link to="" style="text-decoration: none">
+      <router-link to="/1/request" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
           <span class="icon-text">Explorar</span>
@@ -62,7 +62,13 @@ export default {
       </router-link>
     </div>
 
-    <div class="toolbar-item">
+    <div class="toolbar-item" v-if="currentUser.role==='cliente'">
+      <router-link to='/client-home'>
+        <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
+      </router-link>
+    </div>
+
+    <div class="toolbar-item" v-if="currentUser.role==='empresa'">
       <router-link to='/enterprise-home'>
         <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
       </router-link>

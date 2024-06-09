@@ -3,6 +3,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import router from './router/index.js'
 
+
 // Add PrimeVue Components
 import Card         from 'primevue/card';
 import Button       from 'primevue/button';
@@ -24,6 +25,11 @@ import 'primeicons/primeicons.css'
 
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primevue/resources/primevue.min.css';
+import FileUpload from "primevue/fileupload";
+import Checkbox from "primevue/checkbox";
+import Dropdown from "primevue/dropdown";
+import Textarea from "primevue/textarea";
+import ProgressBar from "primevue/progressbar";
 
 
 createApp(App)
@@ -35,4 +41,9 @@ createApp(App)
     .component('pv-input-text', InputText)
     .component('pv-float-label', FloatLabel)
     .component('pv-dialog', Dialog )
+    .component('pv-file-upload', FileUpload)
+    .component('pv-checkbox', Checkbox)
+    .component('pv-dropdown', Dropdown)
+    .component('pv-textarea', Textarea)
+    .component('pv-progress-bar', ProgressBar)
     .mount('#app')
