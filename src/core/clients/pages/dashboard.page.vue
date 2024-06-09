@@ -36,10 +36,11 @@ export default {
       <!-- Nueva Card con solo título -->
       <pv-card style="margin:5px">
         <template #title>
-          <h2>Nueva Card con Título</h2>
+          <h2>Proyecto Residencial San Felipe</h2>
           <hr>
         </template>
       </pv-card>
+
 
       <!-- Card existente con contenido -->
       <pv-card style="margin:5px">
@@ -108,19 +109,24 @@ export default {
         </template>
       </pv-card>
 
-
-
     </div>
 
     <div class="right-column">
       <div class="request-form-attach">
         <pv-card style="margin:5px">
           <template #title>
-            <h2>Adjuntar Imagen</h2>
-            <hr>
-          </template>
-          <template #content>
-            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Imagen" />
+            <div class="title-container">
+              <div class="left-content">
+                <h2>Presupuesto proyecto</h2>
+                <div class="subtitle">
+                  <p>$ 20,000</p>
+                </div>
+              </div>
+              <div class="right-content">
+                <h2>Cantidad de postes</h2>
+                <h3>34</h3>
+              </div>
+            </div>
           </template>
         </pv-card>
 
@@ -129,12 +135,11 @@ export default {
             <h2>Adjuntar Ubicación</h2>
             <hr>
           </template>
-          <template #content>
-            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Archivo" />
-          </template>
+          
         </pv-card>
 
         <div class="send-request">
+          <p>¿Tienes dudas, consultas o quejas? <br> Genera tu ticket para que nuestro <br> equipo lo solucione.</p>
           <pv-button @click="openDialog=!openDialog">
             Generar Ticket
           </pv-button>
@@ -213,6 +218,33 @@ export default {
   margin-top: 10px;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.post-count {
+  text-align: right;
+}
+
+.subtitle {
+  text-align: left;
+}
+
 @media screen and (max-width: 768px) {
   .request-form-container {
     flex-direction: column;
@@ -223,6 +255,20 @@ export default {
   .right-column {
     width: 100%;
   }
-}
 
+  .title-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-content,
+  .right-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .subtitle {
+    text-align: center;
+  }
+}
 </style>
