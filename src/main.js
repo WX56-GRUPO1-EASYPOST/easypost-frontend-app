@@ -26,6 +26,9 @@ import 'primeicons/primeicons.css'
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primevue/resources/primevue.min.css';
 import FileUpload from "primevue/fileupload";
+import Checkbox from "primevue/checkbox";
+import Dropdown from "primevue/dropdown";
+import Textarea from "primevue/textarea";
 
 
 createApp(App)
@@ -38,4 +41,7 @@ createApp(App)
     .component('pv-float-label', FloatLabel)
     .component('pv-dialog', Dialog )
     .component('pv-file-upload', FileUpload)
+    .component('pv-checkbox', Checkbox)
+    .component('pv-dropdown', Dropdown)
+    .component('pv-textarea', Textarea)
     .mount('#app')
