@@ -6,6 +6,8 @@ const props = defineProps({
   request: Object
 });
 
+const emit = defineEmits(['seeRequestDetails'])
+
 const client = ref(null);
 
 const selectedRequest = ref(null);
@@ -30,6 +32,7 @@ const getGoogleMapsUrl = (request) => {
 
 const showDetails = (request) => {
   selectedRequest.value = request;
+  emit('seeRequestDetails',selectedRequest)
 }
 </script>
 
@@ -57,67 +60,39 @@ const showDetails = (request) => {
         </pv-card>
       </template>
     </pv-card>
-    <!-- Tarjeta de detalles -->
-    <pv-card v-if="selectedRequest" class="request-detail">
-      <template #content>
-        <h2>Detalles de la Solicitud</h2>
-        <h3>Datos del Cliente</h3>
-        <ul>
-          <li>Nombres: {{ client.name }}</li>
-          <li>Email: {{ client.email }}</li>
-        </ul>
-        <h3>Ubicación</h3>
-        <ul>
-          <li>Departamento: {{ selectedRequest.ubicacion.departamento }}</li>
-          <li>Provincia: {{ selectedRequest.ubicacion.provincia }}</li>
-          <li>Distrito: {{ selectedRequest.ubicacion.distrito }}</li>
-          <li>Localidad: {{ selectedRequest.ubicacion.localidad }}</li>
-          <li>Dirección: {{ selectedRequest.ubicacion.direccion }}</li>
-          <li>Referencia: {{ selectedRequest.ubicacion.referencia }}</li>
-        </ul>
-        <h3>Detalles del proyecto</h3>
-        <ul>
-          <li>plazo: {{ selectedRequest.detalles_del_proyecto.plazo }}</li>
-          <li>Motivo de solicitud: {{ selectedRequest.detalles_del_proyecto.motivo }}</li>
-          <li>Diseño: {{ selectedRequest.detalles_del_proyecto.diseño }}</li>
-          <li>Cantidad: {{ selectedRequest.detalles_del_proyecto.cantidad }}</li>
-          <li>Presupuesto: {{ selectedRequest.detalles_del_proyecto.presupuesto }}</li>
-        </ul>
-      </template>
-    </pv-card>
   </div>
 </template>
 
 <style scoped>
 .main-container{
   width:100%;
-  height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, #AAFFC2 0%, #ADFFEB 50%, #FBFBFB 100%);
+  margin-right: 10px;
 }
-
+.list-request{
+  width:900px;
+  max-height: 1000px;
+}
 .card-request{
   background-color: #D9D9D9;
-  margin: 10px;
 }
 .request-info{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
 }
-.list-request{
-  max-width: 1100px;
-  min-width: 900px;
-  max-height: 1000px;
+.request-info > div{
   margin: auto;
 }
-.request-detail{
-  max-width: 800px;
-  min-width: 500px;
-  height: 75vh;
-  margin: auto;
+@media screen and (max-width: 940px) {
+  .list-request{
+    width: 100%;
+  }
+  .request-info{
+    flex-direction: column;
+  }
 }
 </style>

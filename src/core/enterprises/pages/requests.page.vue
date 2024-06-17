@@ -3,16 +3,12 @@ import RequestsList from "../components/requests-list.component.vue"
 </script>
 
 <template>
-  <div class="request-list-container">
+  <h1 style="text-align: center">Solicitudes</h1>
+  <div>
     <requests-list></requests-list>
   </div>
 </template>
 
 <style scoped>
-.request-list-container{
-  height: 400px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin-right: 30px;
-}
+
 </style>

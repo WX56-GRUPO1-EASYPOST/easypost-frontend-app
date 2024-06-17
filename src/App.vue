@@ -32,8 +32,11 @@ export default {
 
 body
 {
-  background-color: #AAFFC2FF;
-
+  /*background-color: #AAFFC2FF;*/
+  background: linear-gradient(180deg, #AAFFC2 0%, #ADFFEB 50%, #FBFBFB 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*min-height: 100vh;*/
 }
 
 </style>
