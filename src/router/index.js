@@ -9,6 +9,7 @@ import ClientHome from "../core/clients/pages/client-home.page.vue"
 import RequestForm from "../core/clients/pages/request-form.page.vue";
 import DashboardPage from "../core/clients/pages/dashboard.page.vue";
 import ManageProject from "../core/enterprises/pages/manage-project.vue";
+import ExplorePage from "../core/clients/pages/explore.page.vue";
 //import Gestionar from "../core/enterprises/pages/manage-project.vue";
 
 const router = createRouter({
@@ -23,6 +24,7 @@ const router = createRouter({
         {path: '/:projectId/manage', component: ManageProject, name: 'manage'},
 
         {path:'/client-home',component:ClientHome},
+        {path:'/explore',component:ExplorePage},
         {path: '/:enterpriseId/request', component: RequestForm},
         {path: '/:projectId/dashboard', component: DashboardPage},
 

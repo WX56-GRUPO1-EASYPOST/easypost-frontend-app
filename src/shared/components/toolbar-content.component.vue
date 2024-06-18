@@ -54,7 +54,7 @@ export default {
 
 <!--    Boton Explorar solo para cliente-->
     <div class="toolbar-item" v-if="currentUser.role==='cliente'">
-      <router-link to="/1/request" style="text-decoration: none">
+      <router-link to="/explore" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
           <span class="icon-text">Explorar</span>
