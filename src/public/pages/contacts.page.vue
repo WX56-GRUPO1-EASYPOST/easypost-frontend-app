@@ -209,6 +209,10 @@ export default {
   padding: 5px 18px;
 }
 
+.chat{
+  width: 600px;
+}
+
 .current-contact {
   display: flex;
   flex-direction: row;
@@ -259,7 +263,7 @@ export default {
   align-items: center;
 }
 
-@media screen and (max-width: 520px){
+@media screen and (max-width: 780px){
   .contact-container {
     display: flex;
     flex-direction: column;
