@@ -3,16 +3,17 @@
 import AuthService from "../../../public/services/authService.js";
 import {User} from "../../../public/model/user.entity.js"
 import TicketForm from "../components/ticket-form.component.vue";
+
 export default {
-  name:"dashboard",
-  components:{
+  name: "dashboard",
+  components: {
     TicketForm,
   },
   data() {
     return {
-      enterprise:User,
+      enterprise: User,
       documentChecked: false, // Estado para el checkbox
-      openDialog:false,
+      openDialog: false,
       progressbar: 99,
     };
   },
@@ -20,10 +21,10 @@ export default {
     let enterpriseId = this.$route.params.enterpriseId
     this.getData(enterpriseId)
   },
-  methods:{
-    async getData(id){
+  methods: {
+    async getData(id) {
       const response = await AuthService.getUserById(id)
-      this.enterprise=response.data
+      this.enterprise = response.data
     }
   }
 
@@ -32,21 +33,21 @@ export default {
 </script>
 
 <template>
-  <div class="request-form-container">
+
+  <div class="dashboard-project-header">
+    <h1>Proyecto Residencial San Felipe</h1>
+    <div class="project-progress-bar">
+      <h2>Progreso: </h2>
+      <pv-progress-bar :value="progressbar" style="width:200px"></pv-progress-bar>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
     <div class="left-column">
-      <!-- Nueva Card con solo título -->
-      <pv-card style="margin:5px">
-        <template #title>
-          <h2>Proyecto Residencial San Felipe</h2>
-          <hr>
-        </template>
-      </pv-card>
-
-
       <!-- Card existente con contenido -->
       <pv-card style="margin:5px">
         <template #title>
-          <h2>Tareas del Proyecto</h2>
+          <h3>Tareas del Proyecto</h3>
           <hr>
         </template>
         <template #content>
@@ -112,56 +113,42 @@ export default {
     </div>
 
 
-
     <div class="right-column">
-
-
-      <div class="project-progress-bar">
-        <h2>Progreso: </h2>
-
-        <div>
-        <pv-progress-bar :value= "progressbar"></pv-progress-bar>
-        </div>
-
-        <h2>{{progressbar}}%</h2>
-
-      </div>
-
-
-      <div class="request-form-attach">
-        <pv-card style="margin:5px">
+      <div class="details">
+        <pv-card>
           <template #title>
             <div class="title-container">
               <div class="left-content">
-                <h2>Presupuesto proyecto</h2>
+                <h3>Presupuesto proyecto</h3>
                 <div class="subtitle">
                   <p>$ 20,000</p>
                 </div>
               </div>
               <div class="right-content">
-                <h2>Cantidad de postes</h2>
+                <h3>Cantidad de postes</h3>
                 <h3>34</h3>
               </div>
             </div>
           </template>
         </pv-card>
-
-        <pv-card style="margin:5px">
-          <template #title>
-            <h2>Adjuntar Ubicación</h2>
-            <hr>
-          </template>
-          
-        </pv-card>
-
-        <div class="send-request">
-          <p>¿Tienes dudas, consultas o quejas? <br> Genera tu ticket para que nuestro <br> equipo lo solucione.</p>
-          <pv-button @click="openDialog=!openDialog">
-            Generar Ticket
-          </pv-button>
-        </div>
-
       </div>
+
+      <pv-card>
+        <template #title>
+          <h2>Capturas del proyecto</h2>
+          <hr>
+          ...
+        </template>
+      </pv-card>
+
+      <div class="generate-ticket">
+        <p>¿Tienes dudas, consultas o quejas? <br> Genera tu ticket para que nuestro <br> equipo lo solucione.</p>
+        <pv-button @click="openDialog=!openDialog">
+          Generar Ticket
+        </pv-button>
+      </div>
+
+
     </div>
   </div>
 
@@ -172,14 +159,20 @@ export default {
 </template>
 
 <style scoped>
-.request-form-container {
+.dashboard-project-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+
+.dashboard-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .left-column {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,11 +184,6 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
-.request-form-content {
-  background-color: lightgreen;
-}
-
 .document-section {
   display: flex;
   align-items: center;
@@ -229,13 +217,13 @@ export default {
   margin-left: 5px;
 }
 
-.request-form-attach {
+.details {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.send-request {
+.generate-ticket {
   margin-top: 10px;
 }
 
@@ -267,7 +255,7 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .request-form-container {
+  .dashboard-container {
     flex-direction: column;
     align-items: center;
   }
@@ -293,4 +281,16 @@ export default {
   }
 
 }
+
+@media screen and (max-width: 890px) {
+  .dashboard-project-header{
+    text-align: center;
+    flex-direction: column;
+  }
+  .project-progress-bar{
+    text-align: center;
+    flex-direction: column;
+  }
+}
+
 </style>
