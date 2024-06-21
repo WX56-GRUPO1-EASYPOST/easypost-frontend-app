@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import LoginComponent from "../public/pages/login.page.vue";
-import RegisterCompany from "../public/pages/register-company.page.vue";
+import Register from "../public/pages/register.page.vue";
 import Contacts from "../public/pages/contacts.page.vue";
 import EnterpriseHome from "../core/enterprises/pages/enterprise-home.page.vue";
 import PageNotFound from "../public/pages/PageNotFound.page.vue"
@@ -17,7 +17,7 @@ const router = createRouter({
     routes: [
         {path: '/', redirect: '/login'},
         {path: '/login', component: LoginComponent, name: 'login'},
-        {path: '/register-company', component: RegisterCompany, name: 'register-company'},
+        {path: '/register', component: Register, name: 'register'},
 
         {path: '/enterprise-home', component: EnterpriseHome},
         {path: '/requests', component: Requests},

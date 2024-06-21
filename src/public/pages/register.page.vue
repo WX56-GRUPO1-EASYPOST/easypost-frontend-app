@@ -4,7 +4,7 @@ import {User} from "../model/user.entity.js";
 import AuthService from '../services/authService.js';
 
 export default {
-  name: "register-company",
+  name: "register",
   components: {},
   data() {
     return {

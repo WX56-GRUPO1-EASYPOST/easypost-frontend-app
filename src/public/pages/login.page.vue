@@ -84,7 +84,7 @@ export default {
               <pv-button :disabled="!isFormValid" label="Ingresar" @click="login" raised></pv-button>
             </form>
             <h4>¿No tienes una cuenta?</h4>
-            <router-link to="/register-company"><pv-button label="Crear cuenta" severity="secondary" raised /></router-link>
+            <router-link to="/register"><pv-button label="Crear cuenta" severity="secondary" raised /></router-link>
           </div>
         </div>
       </template>

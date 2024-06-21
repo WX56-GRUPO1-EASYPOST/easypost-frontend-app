@@ -12,7 +12,7 @@ export default {
       if(this.$route.name==='pageNotFound'){
         return false;
       }
-      return this.$route.path !== "/login" && this.$route.path !== "/register-company";
+      return this.$route.path !== "/login" && this.$route.path !== "/register";
     }
   }
 }
