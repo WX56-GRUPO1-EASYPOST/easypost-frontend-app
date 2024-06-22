@@ -2,6 +2,7 @@
 
 import {User} from "../model/user.entity.js";
 import AuthService from '../services/authService.js';
+import {SignUpUser} from "../model/sign-up-user.entity.js";
 
 export default {
   name: "register",
@@ -13,10 +14,10 @@ export default {
       password: '',
       repeat_password: '',
       full_name: '',
-      rol: '',
-      Company: true,
-      Client: false,
-      formErrors: []
+      rol: 0,
+      formErrors: [],
+      Role:'Cliente',
+      options:['Cliente','Empresa']
     }
   },
   methods: {
@@ -54,10 +55,10 @@ export default {
     async Register() {
       this.formErrors = [];
 
-      const emailRegistered = await this.isEmailAlreadyRegistered(this.email);
+      /*const emailRegistered = await this.isEmailAlreadyRegistered(this.email);
       if (emailRegistered) {
         this.formErrors.push('El email ya está registrado.');
-      }
+      }*/
 
       if (!this.isValidEmail(this.email)) {
         this.formErrors.push('El email no es válido.');
@@ -74,17 +75,20 @@ export default {
       if (this.password !== this.repeat_password) {
         this.formErrors.push('Las contraseñas no coinciden.');
       }
-
       if (this.formErrors.length === 0) {
-        if (this.Company) {
-          this.rol = 'empresa';
-        } else {
-          this.rol = 'cliente';
+
+        if(this.Role==='Cliente'){
+          this.rol=1;
+        }else{
+          this.rol=0;
         }
-        this.id = Math.floor(Math.random() * 1000);
-        const user = new User(this.id.toString(), this.full_name, this.email, this.password, this.rol);
-        console.log(user);
-        AuthService.registerUser(user);
+
+        const signUpUser= new SignUpUser(this.email,this.password,this.rol)
+
+        AuthService.registerUser(signUpUser).then(response=>{
+          console.log(response.data)
+        })
+
         this.$router.push({ path: '/login' });
       } else {
         console.log(this.formErrors);
@@ -113,7 +117,7 @@ export default {
           <br><br>
           <div>
             <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
-            <button class="button-a" @click="goToLogin">Iniciar sesion</button>
+            <pv-button class="button-a" @click="goToLogin">Iniciar sesion</pv-button>
           </div>
           <div v-if="formErrors.length > 0">
             <ul>
@@ -121,9 +125,9 @@ export default {
             </ul>
           </div>
           <br>
-          <form class="login-form">
+          <form @submit.prevent="Register" class="login-form">
             <div class="form-group">
-              <input v-model="full_name" type="text" placeholder="Nombre Completo" class="input" id="email">
+              <input v-model="full_name" type="text" placeholder="Nombre Completo" class="input" id="full-name">
             </div>
             <div class="form-group">
               <input v-model="email" type="text" placeholder="Correo electrónico" class="input" id="email">
@@ -134,15 +138,10 @@ export default {
             <div class="form-group">
               <input v-model="repeat_password" type="password" placeholder="Repetir contraseña" class="input" id="repeat_password">
             </div>
-            <div class="form-group">
-
-              <button v-if="Client" class="button-a" @click="changeRol">Cliente</button>
-              <button v-if="Company" class="button-b" >Cliente</button>
-
-              <button v-if="Client" class="button-b" >Empresa</button>
-              <button v-if="Company" class="button-a" @click="changeRol">Empresa</button>
+            <div class="form-group-select-button">
+              <pv-select-button v-model="Role" :options="options" style="padding: 5px" />
             </div>
-            <button class="submit-button" style="background-color: #6FA9AE" @click="Register">Registrar</button>
+            <pv-button label="Registrar" class="submit-button" style="background-color: #6FA9AE" type="submit"></pv-button>
           </form>
         </div>
       </template>
@@ -152,6 +151,14 @@ export default {
 </template>
 
 <style scoped>
+.form-group-select-button{
+  margin: auto auto 10px auto;
+  background-color: #6FA9AE;
+  border-width: 0;
+  border-color: inherit;
+  border-radius: 5px;
+}
+
 .structure {
   display: flex;
   justify-content: center;
@@ -204,7 +211,7 @@ export default {
 
 .form-card {
   width: 180px;
-  background: white;
+  background: #fbfbfb;
   display: flex;
   justify-content: center;
   align-items: center;

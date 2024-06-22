@@ -30,6 +30,7 @@ import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 import Textarea from "primevue/textarea";
 import ProgressBar from "primevue/progressbar";
+import SelectButton from "primevue/selectbutton";
 
 
 createApp(App)
@@ -46,4 +47,5 @@ createApp(App)
     .component('pv-dropdown', Dropdown)
     .component('pv-textarea', Textarea)
     .component('pv-progress-bar', ProgressBar)
+    .component('pv-select-button',SelectButton)
     .mount('#app')
