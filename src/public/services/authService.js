@@ -20,11 +20,11 @@ class AuthService {
         }
     }*/
     getAllUsers() {
-        return axios.get(API_URL);
+        return axios.get(API_URL2);
     }
 
     getUserById(userId) {
-        const url = `${API_URL}/${userId}`;
+        const url = `${API_URL2}/${userId}`;
         return axios.get(url);
     }
 
