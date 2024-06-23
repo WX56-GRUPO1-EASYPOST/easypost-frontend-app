@@ -43,7 +43,7 @@ export default {
       </button>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='empresa'">
+    <div class="toolbar-item" v-if="currentUser.role==='Enterprise'">
       <router-link to="/requests" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
@@ -53,7 +53,7 @@ export default {
     </div>
 
 <!--    Boton Explorar solo para cliente-->
-    <div class="toolbar-item" v-if="currentUser.role==='cliente'">
+    <div class="toolbar-item" v-if="currentUser.role==='Client'">
       <router-link to="/explore" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
@@ -62,13 +62,13 @@ export default {
       </router-link>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='cliente'">
+    <div class="toolbar-item" v-if="currentUser.role==='Client'">
       <router-link to='/client-home'>
         <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
       </router-link>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='empresa'">
+    <div class="toolbar-item" v-if="currentUser.role==='Enterprise'">
       <router-link to='/enterprise-home'>
         <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
       </router-link>

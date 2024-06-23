@@ -1,5 +1,6 @@
 <script>
 import AuthService from '../services/authService.js';
+import {SignInUserEntity} from "../model/sign-in-user.entity.js";
 
 export default {
   name: "login",
@@ -25,22 +26,20 @@ export default {
         this.emailError = '';
       }
     },
-    goToRegister() {
-      this.$router.push({ path: '/register-company' });
-    },
     async login() {
       if (!this.isFormValid) return;
-      const users = await AuthService.getAllUsers();
-      const user = users.data.find(user => user.email === this.correo_electronico && user.password === this.contrasena);
+      const singInUser = new SignInUserEntity(this.correo_electronico,this.contrasena)
+      const response = await AuthService.loginUser(singInUser);
+      console.log(response.data)
+      const user = response.data;
       this.loginError = !user;
       if (user) {
-        const userId = user.id;
-        let currentUser = {
-          id: userId,
-          role: user.role
+        const currentUser = {
+          id:user.id,
+          role: user.type
         }
         localStorage.setItem("user", JSON.stringify(currentUser))
-        this.$router.push({path: user.role === 'empresa' ? '/enterprise-home' : '/client-home'});
+        this.$router.push({path: currentUser.role === 'Enterprise' ? '/enterprise-home' : '/client-home'});
       }
     }
   }

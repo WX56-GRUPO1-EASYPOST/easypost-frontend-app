@@ -108,9 +108,9 @@ export default {
       let allChats = response1.data
 
       let chat = {}
-      if (role === 'empresa') {
+      if (role === 'Enterprise') {
         chat = allChats.find(item => item.enterpriseId === currentUserId && item.clientId === currentContactId)
-      } else if (role === 'cliente') {
+      } else if (role === 'Client') {
         chat = allChats.find(item => item.clientId === currentUserId && item.enterpriseId === currentContactId)
       }
 

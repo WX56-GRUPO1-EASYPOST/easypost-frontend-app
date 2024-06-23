@@ -27,7 +27,9 @@ class AuthService {
         const url = `${API_URL2}/${userId}`;
         return axios.get(url);
     }
-
+    loginUser(user){
+        return axios.post(`${API_URL}/sign-in`,user);
+    }
     registerUser2(user) {
         return axios.post(API_URL, user);
 
