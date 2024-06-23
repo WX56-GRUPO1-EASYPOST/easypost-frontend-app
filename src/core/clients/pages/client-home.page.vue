@@ -1,5 +1,5 @@
 <script>
-import ClientProjects from "./client-projects.page.vue";
+import ClientProjects from "../components/client-projects.component.vue";
 
 export default {
   name: "client-home.page",

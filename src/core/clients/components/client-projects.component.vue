@@ -1,5 +1,5 @@
 <script>
-import ClientProjectCard from "../components/client-project-card.component.vue";
+import ClientProjectCard from "./client-project-card.component.vue";
 
 export default {
   name: "ClientProjects",
