@@ -1,11 +1,15 @@
 <script>
-import Profile from "../../core/enterprises/components/profile.component.vue";
+import Profile from "../../public/components/profile.component.vue";
+import ProfilesService from "../../public/services/profiles.service.js";
+import {ProfileEntity} from "../../public/model/profile.entity.js";
 
 export default {
   name: 'Toolbar-Content',
   components: {Profile},
   data() {
     return {
+      profilesService : new ProfilesService(),
+      profile:new ProfileEntity(),
       visible: false,
       currentUser:null
     }
@@ -20,12 +24,15 @@ export default {
       localStorage.removeItem("user")
       this.$router.push({name: 'login'});
     },
-    goToRequests() {
-      // Obtener el ID del usuario de la ruta actual
-      const userId = this.$route.params.userId;
-
-      // Redirigir a la ruta "requests" con el mismo ID
-      //this.$router.push({name: 'requests', params: {userId}});
+    async openProfile(){
+      let user = JSON.parse(localStorage.getItem("user"))
+      let id = user.id
+      const response = await this.profilesService.getProfileByUserId(id)
+      let profileResponse = response.data
+      this.profile=new ProfileEntity(
+          profileResponse.id,profileResponse.fullContact,
+          profileResponse.fullAddress,profileResponse.fullDetails)
+      this.visible=true
     }
   }
 }
@@ -37,7 +44,7 @@ export default {
   <div class="toolbar-content">
 
     <div class="toolbar-item">
-      <button @click="visible=true">
+      <button @click="openProfile">
         <img src="../../assets/perfil.png" alt="Perfil">
         <span class="icon-text">Perfil</span>
       </button>
@@ -96,7 +103,7 @@ export default {
 
 
   <pv-dialog v-model:visible="visible" modal :style="{width:'30rem'}" :closable="false">
-    <profile @close-dialog="visible=false"></profile>
+    <profile @close-dialog="visible=false" :profile="profile"></profile>
   </pv-dialog>
 
 </template>
