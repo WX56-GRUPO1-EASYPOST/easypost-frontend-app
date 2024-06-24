@@ -6,4 +6,7 @@ export default class ProfilesService{
     getProfileByUserId(id){
         return axios.get(`${API_URL}/user/${id}`)
     }
+    getEnterpriseProfiles(){
+        return axios.get(`${API_URL}/enterprises`)
+    }
 }
