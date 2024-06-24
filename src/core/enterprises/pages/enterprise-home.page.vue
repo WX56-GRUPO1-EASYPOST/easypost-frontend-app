@@ -1,5 +1,5 @@
 <script>
-import Projects from "./projects.page.vue"
+import Projects from "../components/projects.component.vue"
 
 export default{
   name:"Enterprise-Home",

@@ -1,5 +1,5 @@
 <script>
-import Project from "../components/project.component.vue";
+import Project from "./project.component.vue";
 import {ProjectsApiService} from "../services/projectsApi.service.js";
 
 export default {

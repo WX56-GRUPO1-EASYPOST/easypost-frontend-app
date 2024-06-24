@@ -2,7 +2,7 @@
 import ClientProjects from "../components/client-projects.component.vue";
 
 export default {
-  name: "client-home.page",
+  name: "client-home",
   components: {ClientProjects},
 
 }
