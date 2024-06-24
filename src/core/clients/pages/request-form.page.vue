@@ -1,22 +1,70 @@
 <script>
+import ProfilesService from "../../../public/services/profiles.service.js";
+import {ProfileEntity} from "../../../public/model/profile.entity.js";
+import requestService from "../../enterprises/services/requestService.js";
 
-import AuthService from "../../../public/services/authService.js";
-import {User} from "../../../public/model/user.entity.js"
 export default {
-  name:"request-form",
+  name: "request-form",
   data() {
     return {
-      enterprise:User
+      enterprise: ProfileEntity,
+      clientId:0,
+      name: "",
+      descripcion: "",
+      ruc: "",
+      profilesService: new ProfilesService(),
+      projectTitle:"",
+      reason:"",
+      deadline:"",
+      totalBudget:"",
+      partialBudget:"",
+      department:"",
+      province:"",
+      district:"",
+      address:"",
+      locality:"",
+      reference:""
     };
   },
   mounted() {
+    let user = JSON.parse(localStorage.getItem("user"));
+    this.clientId=user.id;
     let enterpriseId = this.$route.params.enterpriseId
     this.getData(enterpriseId)
   },
-  methods:{
-    async getData(id){
-      const response = await AuthService.getUserById(id)
-      this.enterprise=response.data
+  methods: {
+    async getData(id) {
+      const response = await this.profilesService.getProfileById(id)
+      this.enterprise = response.data
+      let partes = [];
+      let fullDetailsString = this.enterprise.fullDetails;
+      partes = fullDetailsString.split(' - ')
+      this.name = partes[0];
+      this.descripcion = partes[1];
+      this.ruc = partes[2];
+      partes = []
+    },
+    sendRequest(){
+
+      let request={
+        projectTitle: this.projectTitle,
+        description:this.reason,
+        budget: this.totalBudget,
+        partialBudget: this.partialBudget,
+        clientId:this.clientId,
+        enterpriseId:this.enterprise.id,
+        deadline:this.deadline,
+        department:this.department,
+        province:this.province,
+        district:this.district,
+        address:this.address,
+        locality:this.locality,
+        reference:this.reference
+      }
+      /*requestService.postRequest(request).then(response => {
+        console.log(response.data)
+      })*/
+      this.$router.push({path:'/client-home'})
     }
   }
 
@@ -29,41 +77,69 @@ export default {
     <div class="request-form-content">
       <pv-card style="margin:5px">
         <template #title>
-          <h2>Complete el siguiente formulario de cotización</h2>
+          <h2>Complete el formulario de solicitud</h2>
           <hr>
         </template>
         <template #content>
-          <h3>{{enterprise.name}}</h3>
-          <img src="" :alt="enterprise.name">
+          <h3>{{ name }}</h3>
+          <h4>{{ descripcion }}</h4>
+          <h4>RUC: {{ ruc }}</h4>
           <div class="request-form-inputs">
-            <pv-float-label>
-              <pv-input-text id="presupuesto"></pv-input-text>
-              <label for="departamento">Presupuesto</label>
-            </pv-float-label>
-            <pv-float-label>
-              <pv-input-text id="motivo"></pv-input-text>
-              <label for="departamento">Motivo</label>
-            </pv-float-label>
-            <pv-float-label>
-              <pv-input-text id="plazo"></pv-input-text>
-              <label for="departamento">Plazo estimado</label>
-            </pv-float-label>
-            <pv-float-label>
-              <pv-input-text id="ubicación"></pv-input-text>
-              <label for="departamento">Ubicación</label>
-            </pv-float-label>
-          <pv-float-label>
-            <pv-input-text id="departamento"></pv-input-text>
-            <label for="departamento">Departamento</label>
-          </pv-float-label>
-          <pv-float-label>
-            <pv-input-text id="provincia"></pv-input-text>
-            <label for="provincia">Provincia</label>
-          </pv-float-label>
-          <pv-float-label>
-            <pv-input-text id="distrito"></pv-input-text>
-            <label for="distrito">Distrito</label>
-          </pv-float-label>
+            <div>
+              <div class="datos-generales">
+                <h3>Datos Generales</h3>
+                <pv-float-label class="input">
+                  <pv-input-text id="projectTitle" v-model="projectTitle"></pv-input-text>
+                  <label for="projectTitle">Nombre del proyecto</label>
+                </pv-float-label>
+                <pv-float-label class="input">
+                  <pv-input-text id="motivo" v-model="reason"></pv-input-text>
+                  <label for="motivo">Motivo</label>
+                </pv-float-label>
+                <pv-float-label class="input">
+                  <pv-input-text id="deadline" v-model="deadline"></pv-input-text>
+                  <label for="deadline">Plazo estimado</label>
+                </pv-float-label>
+              </div>
+              <div class="presupuesto">
+                <h3>Presupuesto</h3>
+                <pv-float-label class="input">
+                  <pv-input-text id="presupuestoTotal" v-model="totalBudget"></pv-input-text>
+                  <label for="presupuestoTotal">Total</label>
+                </pv-float-label>
+                <pv-float-label class="input">
+                  <pv-input-text id="presupuestoParcial" v-model="partialBudget"></pv-input-text>
+                  <label for="presupuestoParcial">Parcial</label>
+                </pv-float-label>
+              </div>
+            </div>
+            <div class="ubicacion">
+              <h3>Ubicacion</h3>
+              <pv-float-label class="input">
+                <pv-input-text id="departamento" v-model="department"></pv-input-text>
+                <label for="departamento">Departamento</label>
+              </pv-float-label>
+              <pv-float-label class="input">
+                <pv-input-text id="provincia" v-model="province"></pv-input-text>
+                <label for="provincia">Provincia</label>
+              </pv-float-label>
+              <pv-float-label class="input">
+                <pv-input-text id="distrito" v-model="district"></pv-input-text>
+                <label for="distrito">Distrito</label>
+              </pv-float-label>
+              <pv-float-label class="input">
+                <pv-input-text id="direccion" v-model="address"></pv-input-text>
+                <label for="direccion">Direccion</label>
+              </pv-float-label>
+              <pv-float-label class="input">
+                <pv-input-text id="localidad" v-model="locality"></pv-input-text>
+                <label for="localidad">Localidad</label>
+              </pv-float-label>
+              <pv-float-label class="input">
+                <pv-input-text id="referencia" v-model="reference"></pv-input-text>
+                <label for="referencia">Referencia</label>
+              </pv-float-label>
+            </div>
           </div>
         </template>
       </pv-card>
@@ -78,7 +154,7 @@ export default {
         </template>
         <template #content>
           <div class="attach-images">
-            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Imagen" />
+            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Imagen"/>
           </div>
         </template>
       </pv-card>
@@ -90,13 +166,13 @@ export default {
         </template>
         <template #content>
           <div class="attach-location">
-            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Archivo" />
+            <pv-file-upload mode="basic" name="demo[]" url="./upload" choose-label="Seleccionar Archivo"/>
           </div>
         </template>
       </pv-card>
 
       <div class="send-request">
-        <pv-button>
+        <pv-button @click="sendRequest">
           Enviar solicitud
         </pv-button>
       </div>
@@ -107,41 +183,50 @@ export default {
 </template>
 
 <style scoped>
-.request-form-container{
+.request-form-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
+
 /*----------------------------*/
-.request-form-content{
-  background-color:lightgreen;
+.request-form-content {
+  background-color: lightgreen;
 }
-.request-form-inputs{
+
+.request-form-inputs {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
-#departamento{
+.input{
+  margin-bottom: 25px;
+}
+#departamento {
 
 }
+
 /*-----------------------------*/
 
-.request-form-attach{
-  display:flex;
+.request-form-attach {
+  display: flex;
   flex-direction: column;
 }
-.attach-images{
+
+.attach-images {
   background-color: lightblue;
 }
-.attach-location{
+
+.attach-location {
   background-color: lightyellow;
 }
-.send-request{
+
+.send-request {
 
 }
 
-@media screen and (max-width: 380px){
-  .request-form-container{
+@media screen and (max-width: 380px) {
+  .request-form-container {
     flex-direction: column;
     align-items: center;
     height: 400px;
@@ -149,7 +234,8 @@ export default {
     overflow-y: auto;
     margin-right: 0;
   }
-  .request-form-content h2{
+
+  .request-form-content h2 {
     font-size: 20px;
   }
 }

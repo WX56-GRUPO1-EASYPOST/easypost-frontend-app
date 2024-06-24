@@ -77,4 +77,5 @@ export default {
 .enterprise-title:hover {
   background-color: #b5b3b3;
 }
+
 </style>

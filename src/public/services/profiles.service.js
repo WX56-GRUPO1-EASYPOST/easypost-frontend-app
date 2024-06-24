@@ -9,4 +9,7 @@ export default class ProfilesService{
     getEnterpriseProfiles(){
         return axios.get(`${API_URL}/enterprises`)
     }
+    getProfileById(id){
+        return axios.get(`${API_URL}/${id}`)
+    }
 }

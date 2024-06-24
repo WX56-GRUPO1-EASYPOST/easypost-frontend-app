@@ -26,6 +26,7 @@ class AuthService {
     getUserById(userId) {
         const url = `${API_URL2}/${userId}`;
         return axios.get(url);
+
     }
     loginUser(user){
         return axios.post(`${API_URL}/sign-in`,user);
