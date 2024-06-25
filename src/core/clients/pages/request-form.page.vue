@@ -16,8 +16,8 @@ export default {
       projectTitle:"",
       reason:"",
       deadline:"",
-      totalBudget:"",
-      partialBudget:"",
+      totalBudget:0,
+      partialBudget:0,
       department:"",
       province:"",
       district:"",
@@ -45,15 +45,14 @@ export default {
       partes = []
     },
     sendRequest(){
-
       let request={
         projectTitle: this.projectTitle,
         description:this.reason,
-        budget: this.totalBudget,
-        partialBudget: this.partialBudget,
+        budget: parseInt(this.totalBudget),
+        partialBudget: parseInt(this.partialBudget),
         clientId:this.clientId,
         enterpriseId:this.enterprise.id,
-        deadline:this.deadline,
+        deadline:new Date(this.deadline),
         department:this.department,
         province:this.province,
         district:this.district,
@@ -61,9 +60,10 @@ export default {
         locality:this.locality,
         reference:this.reference
       }
-      /*requestService.postRequest(request).then(response => {
+      requestService.postRequest(request).then(response => {
         console.log(response.data)
-      })*/
+      })
+      //console.log(request)
       this.$router.push({path:'/client-home'})
     }
   }
@@ -96,19 +96,19 @@ export default {
                   <pv-input-text id="motivo" v-model="reason"></pv-input-text>
                   <label for="motivo">Motivo</label>
                 </pv-float-label>
-                <pv-float-label class="input">
-                  <pv-input-text id="deadline" v-model="deadline"></pv-input-text>
-                  <label for="deadline">Plazo estimado</label>
-                </pv-float-label>
+                <div style="display: flex;flex-direction: column">
+                <label for="deadline" style="font-size: 13px;padding-left: 13px">Plazo estimado</label>
+                <pv-input-text id="deadline" v-model="deadline" type="date"></pv-input-text>
+                </div>
               </div>
               <div class="presupuesto">
                 <h3>Presupuesto</h3>
                 <pv-float-label class="input">
-                  <pv-input-text id="presupuestoTotal" v-model="totalBudget"></pv-input-text>
+                  <pv-input-text id="presupuestoTotal" v-model="totalBudget" type="number"></pv-input-text>
                   <label for="presupuestoTotal">Total</label>
                 </pv-float-label>
                 <pv-float-label class="input">
-                  <pv-input-text id="presupuestoParcial" v-model="partialBudget"></pv-input-text>
+                  <pv-input-text id="presupuestoParcial" v-model="partialBudget" type="number"></pv-input-text>
                   <label for="presupuestoParcial">Parcial</label>
                 </pv-float-label>
               </div>
