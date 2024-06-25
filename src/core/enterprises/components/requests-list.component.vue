@@ -23,7 +23,7 @@ onMounted(async () => {
     const company = JSON.parse(localStorage.getItem('user'));
     const companyId = company.id;
     console.log(companyId)
-    const response = await requestService.getRequestsByCompanyId(companyId);
+    const response = await requestService.getRequestsByCompanyId(companyId,0);
     console.log(response); // Imprime la respuesta completa
     requests.value = response; // Accede directamente a response
     console.log(requests.value);
