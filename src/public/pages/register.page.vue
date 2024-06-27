@@ -22,8 +22,8 @@ export default {
       District   : "",
       Residential: "",
       formErrors: [],
-      Role:'Cliente',
-      options:['Cliente','Empresa']
+      Role:'Client',
+        options:['Client','Company']
     }
   },
   computed: {
