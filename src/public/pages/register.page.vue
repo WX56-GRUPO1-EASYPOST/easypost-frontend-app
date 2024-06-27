@@ -14,7 +14,13 @@ export default {
       password: '',
       repeat_password: '',
       full_name: '',
-      rol: 0,
+      rol: '',
+      Description: "Añadir descripción",
+      Ruc        : "",
+      Phone      : "",
+      Department : "",
+      District   : "",
+      Residential: "",
       formErrors: [],
       Role:'Cliente',
       options:['Cliente','Empresa']
@@ -91,13 +97,25 @@ export default {
 
       if (this.formErrors.length === 0) {
 
-        if(this.Role==='Client'){
-          this.rol=1;
+        if(this.Role === 'Client'){
+          this.rol="Client";
         }else{
-          this.rol=0;
+          this.rol="Company";
         }
 
-        const signUpUser= new SignUpUser(this.email,this.password,this.rol)
+        const signUpUser= new SignUpUser(
+            this.email,
+            this.password,
+            this.rol,
+            this.full_name,
+            this.Description,
+            this.Ruc,
+            this.Phone,
+            this.email,
+            this.Department,
+            this.District,
+            this.Residential
+        )
 
         AuthService.registerUser(signUpUser).then(response=>{
           console.log(response.data)
@@ -139,6 +157,36 @@ export default {
                 <pv-float-label>
                   <pv-input-text v-model="email" type="text" id="email" />
                   <label for="email">Correo electrónico</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="Ruc" type="text" id="Ruc" />
+                  <label for="full-name">Ruc</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="Phone" type="text" id="Phone" />
+                  <label for="full-name">Teléfono</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="Department" type="text" id="Department" />
+                  <label for="full-name">Departamento</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="District" type="text" id="District" />
+                  <label for="full-name">Distrito</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="Residential" type="text" id="Residential" />
+                  <label for="full-name">Residencial</label>
                 </pv-float-label>
               </div>
               <div>
