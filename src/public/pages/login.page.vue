@@ -120,8 +120,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-width: 50em;
-  gap: 5em;
+  min-width: 55em;
+  gap: 6em;
   height: 70vh;
 }
 
@@ -131,6 +131,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  position:relative;
 }
 .label-container{
   font-size: 3.5em;
@@ -138,6 +139,8 @@ export default {
   color: #101010;
   margin-top: 1em;
   margin-bottom: 1em;
+  position:absolute;
+  top:65%;
 }
 .form-container {
   display: flex;
