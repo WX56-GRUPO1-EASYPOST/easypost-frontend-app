@@ -9,6 +9,9 @@ class ProfilesService{
     getEnterpriseProfiles(){
         return axiosInstance.get(`/enterprises`)
     }
+    GetAllProfiles(){
+        return axiosInstance.get('/profiles');
+    }
 }
 
 export default new ProfilesService();

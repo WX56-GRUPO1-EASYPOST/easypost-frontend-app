@@ -1,5 +1,5 @@
-import axios from 'axios';
-
+//import axios from 'axios';
+import axiosInstance from "../../../shared/services/shared.service.js";
 const API_URL2 = 'http://localhost:3000/requests';
 const API_URL="http://localhost:5134/api/v1/requests"
 
@@ -17,7 +17,7 @@ class requestService {
     }
     async getRequestsByCompanyId(companyId,status) {
         try {
-            const response = await axios.get(`${API_URL}/enterprise/${companyId}/filter`,{params:status});
+            const response = await axiosInstance.get(`/requests/enterprise/${companyId}/filter`,{params:status});
 
             // Devolver los datos de las solicitudes
             return response.data;
@@ -31,7 +31,7 @@ class requestService {
         return axios.get(API_URL2);
     }
     postRequest(request){
-        return axios.post(`${API_URL}`,request);
+        return axiosInstance.post(`/requests`,request);
     }
 }
 

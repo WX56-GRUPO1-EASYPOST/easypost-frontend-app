@@ -1,6 +1,7 @@
 <script>
 import EnterpriseCard from "../components/enterprise-card.component.vue";
 import ProfilesService from "../../../public/services/profiles.service.js";
+import {ProfileEntity} from "../../../public/model/profile.entity.js";
 
 export default {
   name: "Explore",
@@ -8,13 +9,23 @@ export default {
   data(){
     return{
       enterprisesList:[],
-      profilesService:new ProfilesService()
+      //profilesService:new ProfilesService()
     }
   },
   mounted() {
-    this.profilesService.getEnterpriseProfiles().then(response => {
-      this.enterprisesList=response.data;
-    })
+    this.getEnterpriseProfiles()
+  },
+  methods:{
+    async getEnterpriseProfiles(){
+      const response = await ProfilesService.GetAllProfiles();
+      let list=response.data;
+      list.forEach(item=>{
+        if(item.type === 'Company'){
+          let profile = new ProfileEntity(item.id,item.fullContact,item.fullAddress,item.fullDetails,item.type);
+          this.enterprisesList.push(profile);
+        }
+      })
+    }
   }
 }
 </script>

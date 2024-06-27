@@ -12,7 +12,7 @@ export default {
       name: "",
       descripcion: "",
       ruc: "",
-      profilesService: new ProfilesService(),
+      //profilesService: new ProfilesService(),
       projectTitle:"",
       reason:"",
       deadline:"",
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async getData(id) {
-      const response = await this.profilesService.getProfileById(id)
+      const response = await ProfilesService.GetProfileByUserId(id)
       this.enterprise = response.data
       let partes = [];
       let fullDetailsString = this.enterprise.fullDetails;
@@ -60,6 +60,7 @@ export default {
         locality:this.locality,
         reference:this.reference
       }
+      console.log(request)
       requestService.postRequest(request).then(response => {
         console.log(response.data)
       })
