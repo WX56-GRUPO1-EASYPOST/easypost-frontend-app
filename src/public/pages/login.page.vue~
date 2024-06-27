@@ -40,7 +40,7 @@ export default {
         }
         const userToken = user.token;
         localStorage.setItem("user", JSON.stringify(currentUser))
-        localStorage.setItem("token",userToken)
+        localStorage.setItem("token",)
         this.$router.push({path: currentUser.role === 'Company' ? '/enterprise-home' : '/client-home'});
       }
     }
