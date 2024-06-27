@@ -23,7 +23,7 @@ export default {
       Residential: "",
       formErrors: [],
       Role:'Client',
-        options:['Client','Company']
+      options:['Client','Company']
     }
   },
   computed: {
@@ -33,6 +33,82 @@ export default {
   }
   ,
   methods: {
+    validateFullName() {
+      if (!this.full_name) {
+        this.formErrors['full_name'] = 'El nombre completo es requerido.';
+      } else if (this.full_name.length < 3 || this.full_name.length > 30) {
+        this.formErrors['full_name'] = 'El nombre completo debe tener entre 3 y 15 caracteres.';
+      } else {
+        this.formErrors['full_name'] = '';
+      }
+    },
+    // ...
+    validateEmail() {
+      if (!this.email) {
+        this.formErrors['email'] = 'El correo electrónico es requerido.';
+      } else if (!this.isValidEmail(this.email)) {
+        this.formErrors['email'] = 'El correo electrónico no es válido.';
+      } else {
+        this.formErrors['email'] = '';
+      }
+    },
+    validateRuc() {
+      if (!this.Ruc) {
+        this.formErrors['Ruc'] = 'El Ruc es requerido.';
+      } else if (!/^\d+$/.test(this.Ruc)) {
+        this.formErrors['Ruc'] = 'El Ruc solo debe contener números.';
+      } else {
+        this.formErrors['Ruc'] = '';
+      }
+    },
+    validatePhone() {
+      if (!this.Phone) {
+        this.formErrors['Phone'] = 'El teléfono es requerido.';
+      } else if (!/^\d+$/.test(this.Phone)) {
+        this.formErrors['Phone'] = 'El teléfono solo debe contener números.';
+      } else {
+        this.formErrors['Phone'] = '';
+      }
+    },
+    validateDepartment() {
+      if (!this.Department) {
+        this.formErrors['Department'] = 'El departamento es requerido.';
+      } else {
+        this.formErrors['Department'] = '';
+      }
+    },
+    validateDistrict() {
+      if (!this.District) {
+        this.formErrors['District'] = 'El distrito es requerido.';
+      } else {
+        this.formErrors['District'] = '';
+      }
+    },
+    validateResidential() {
+      if (!this.Residential) {
+        this.formErrors['Residential'] = 'El residencial es requerido.';
+      } else {
+        this.formErrors['Residential'] = '';
+      }
+    },
+    validatePassword() {
+      if (!this.password) {
+        this.formErrors['password'] = 'La contraseña es requerida.';
+      } else if (!this.isPasswordStrong(this.password)) {
+        this.formErrors['password'] = 'La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula y un número.';
+      } else {
+        this.formErrors['password'] = '';
+      }
+    },
+    validateRepeatPassword() {
+      if (!this.repeat_password) {
+        this.formErrors['repeat_password'] = 'Repetir contraseña es requerido.';
+      } else if (this.password !== this.repeat_password) {
+        this.formErrors['repeat_password'] = 'Las contraseñas no coinciden.';
+      } else {
+        this.formErrors['repeat_password'] = '';
+      }
+    },
     isValidEmail(email) {
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return pattern.test(email);
@@ -65,7 +141,7 @@ export default {
       this.Client = !this.Client;
     },
     async Register() {
-      this.formErrors = [];
+
 
       if (!this.full_name) {
         this.formErrors.push('El nombre completo es requerido.');
@@ -166,65 +242,66 @@ export default {
             <br>
             <br>
             <form class="register-form">
-              <div>
+              <div style="display: flex; flex-direction:column; align-items:center;">
                 <pv-float-label>
-                  <pv-input-text v-model="full_name" type="text" id="full-name" />
+                  <pv-input-text v-model="full_name" type="text" id="full-name" @input="validateFullName" />
                   <label for="full-name">Nombre Completo</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['full_name'] }}</div>
               </div>
+              <!-- ... -->
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="email" type="text" id="email" />
+                  <pv-input-text v-model="email" type="text" id="email" @input="validateEmail" />
                   <label for="email">Correo electrónico</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['email'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="Ruc" type="text" id="Ruc" />
+                  <pv-input-text v-model="Ruc" type="text" id="Ruc" @input="validateRuc" />
                   <label for="Ruc">Ruc</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['Ruc'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="Phone" type="text" id="Phone" />
+                  <pv-input-text v-model="Phone" type="text" id="Phone" @input="validatePhone" />
                   <label for="Phone">Teléfono</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['Phone'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="Department" type="text" id="Department" />
+                  <pv-input-text v-model="Department" type="text" id="Department" @input="validateDepartment" />
                   <label for="Department">Departamento</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['Department'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="District" type="text" id="District" />
+                  <pv-input-text v-model="District" type="text" id="District" @input="validateDistrict" />
                   <label for="District">Distrito</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['District'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="Residential" type="text" id="Residential" />
+                  <pv-input-text v-model="Residential" type="text" id="Residential" @input="validateResidential" />
                   <label for="Residential">Residencial</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['Residential'] }}</div>
               </div>
-              <div>
+              <div style="display: flex; flex-direction:column; align-items:center;" >
                 <pv-float-label>
-                  <pv-input-text v-model="password" type="password" id="password" />
+                  <pv-input-text v-model="password" type="password" id="password" @input="validatePassword" />
                   <label for="password">Contraseña</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['password'] }}</div>
               </div>
               <div>
                 <pv-float-label>
-                  <pv-input-text v-model="repeat_password" type="password" id="repeat-password" />
+                  <pv-input-text v-model="repeat_password" type="password" id="repeat-password" @input="validateRepeatPassword" />
                   <label for="repeat-password">Repetir Contraseña</label>
                 </pv-float-label>
                 <div class="error-message">{{ formErrors['repeat_password'] }}</div>
@@ -349,6 +426,7 @@ export default {
 .error-message {
   color: red;
   text-align: center;
+  font-size: 0.7em;
 }
 
 </style>
