@@ -20,6 +20,12 @@ export default {
       options:['Cliente','Empresa']
     }
   },
+  computed: {
+    isFormValid() {
+      return this.full_name && this.email && this.isValidEmail(this.email) && this.password && this.repeat_password && this.password === this.repeat_password && this.Role;
+    }
+  }
+  ,
   methods: {
     isValidEmail(email) {
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,26 +61,34 @@ export default {
     async Register() {
       this.formErrors = [];
 
-      /*const emailRegistered = await this.isEmailAlreadyRegistered(this.email);
-      if (emailRegistered) {
-        this.formErrors.push('El email ya está registrado.');
-      }*/
-
-      if (!this.isValidEmail(this.email)) {
-        this.formErrors.push('El email no es válido.');
+      if (!this.full_name) {
+        this.formErrors.push('El nombre completo es requerido.');
+      } else if (this.full_name.length < 3 || this.full_name.length > 15) {
+        this.formErrors.push('El nombre completo debe tener entre 3 y 15 caracteres.');
       }
 
-      if (!this.isPasswordStrong(this.password)) {
+      if (!this.email) {
+        this.formErrors.push('El correo electrónico es requerido.');
+      } else if (!this.isValidEmail(this.email)) {
+        this.formErrors.push('El correo electrónico no es válido.');
+      }
+
+      if (!this.password) {
+        this.formErrors.push('La contraseña es requerida.');
+      } else if (!this.isPasswordStrong(this.password)) {
         this.formErrors.push('La contraseña debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula y un número.');
       }
 
-      if (!this.isValidName(this.full_name)) {
-        this.formErrors.push('El nombre completo debe tener más de dos caracteres.');
-      }
-
-      if (this.password !== this.repeat_password) {
+      if (!this.repeat_password) {
+        this.formErrors.push('Repetir contraseña es requerido.');
+      } else if (this.password !== this.repeat_password) {
         this.formErrors.push('Las contraseñas no coinciden.');
       }
+
+      if (!this.Role) {
+        this.formErrors.push('El rol es requerido.');
+      }
+
       if (this.formErrors.length === 0) {
 
         if(this.Role==='Cliente'){
@@ -100,70 +114,68 @@ export default {
 
 <template>
   <div class="structure">
-    <pv-card class="img-card" style="width: 600px; height: 800px">
+    <pv-card class="form-card">
       <template #content>
-        <div class="img-container">
-          <img src="../../assets/logo-register.png" alt="img-card-logo" style="width: 240px;">
-        </div>
-        <div class="label-container">
-          <b>EasyPost</b>
-        </div>
-      </template>
-    </pv-card>
-    <pv-card class="form-card" style="width: 600px; height: 800px">
-      <template #content>
-        <div class="card-info">
-          <div style="text-align: center; font-size: 30px"><b>Registrar nueva cuenta</b></div>
-          <br><br>
-          <div>
-            <div style="text-align: left; font-size: 15px; padding: 0 0 15px;">¿Tienes una cuenta?</div>
-            <pv-button class="button-a" @click="goToLogin">Iniciar sesion</pv-button>
+        <div class="card-content">
+          <div class="img-container">
+            <img src="../../assets/logo-register.png" alt="img-card-logo">
+            <div class="label-container">
+              <b>EasyPost</b>
+            </div>
           </div>
-          <div v-if="formErrors.length > 0">
-            <ul>
-              <li v-for="error in formErrors" :key="error" style="color: red;">{{ error }}</li>
-            </ul>
-          </div>
-          <br>
-          <form @submit.prevent="Register" class="login-form">
-            <div class="form-group">
-              <input v-model="full_name" type="text" placeholder="Nombre Completo" class="input" id="full-name">
-            </div>
-            <div class="form-group">
-              <input v-model="email" type="text" placeholder="Correo electrónico" class="input" id="email">
-            </div>
-            <div class="form-group">
-              <input v-model="password" type="password" placeholder="Contraseña" class="input" id="password">
-            </div>
-            <div class="form-group">
-              <input v-model="repeat_password" type="password" placeholder="Repetir contraseña" class="input" id="repeat_password">
-            </div>
-            <div class="form-group-select-button">
-              <pv-select-button v-model="Role" :options="options" style="padding: 5px" />
-            </div>
-            <pv-button label="Registrar" class="submit-button" style="background-color: #6FA9AE" type="submit"></pv-button>
-          </form>
-        </div>
-      </template>
-    </pv-card>
+          <div class="form-container">
+            <div style="text-align: center; font-size: 1.3em"><b>Registre su cuenta</b></div>
+            <br>
+            <br>
+            <form class="register-form">
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="full_name" type="text" id="full-name" />
+                  <label for="full-name">Nombre Completo</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="email" type="text" id="email" />
+                  <label for="email">Correo electrónico</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="password" type="password" id="password" />
+                  <label for="password">Contraseña</label>
+                </pv-float-label>
+              </div>
+              <div>
+                <pv-float-label>
+                  <pv-input-text v-model="repeat_password" type="password" id="repeat-password" />
+                  <label for="repeat-password">Repetir Contraseña</label>
+                </pv-float-label>
+              </div>
+              <div style="display: flex;align-items: center;gap:1em">
+                <label for="role">Rol</label>
+                <pv-float-label>
+                  <pv-select-button v-model="Role" :options="options" />
 
+                </pv-float-label>
+              </div>
+              <pv-button :disabled="!isFormValid" label="Registrar" @click="Register" raised></pv-button>
+            </form>
+            <h4>¿Ya tienes una cuenta?</h4>
+            <router-link to="/login"><pv-button label="Iniciar sesión" severity="secondary" raised /></router-link>
+          </div>
+        </div>
+      </template>
+    </pv-card>
   </div>
 </template>
 
 <style scoped>
-.form-group-select-button{
-  margin: auto auto 10px auto;
-  background-color: #6FA9AE;
-  border-width: 0;
-  border-color: inherit;
-  border-radius: 5px;
-}
-
 .structure {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 98vh;
+  height: 100vh;
   background-image: url("../../assets/workman.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -173,9 +185,8 @@ export default {
   font-family: Helvetica, sans-serif;
 }
 
-.img-card {
-  width: 40%;
-  height: auto;
+.form-card {
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,89 +194,82 @@ export default {
   background-image: url("../../assets/register-login-image.png");
 }
 
-.label-container {
-  text-align: center;
-  justify-content: center;
-  font-size: 80px;
-  color: #704116;
+.card-content {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  flex-direction: column;
+  min-width: 50em;
+  gap: 5em;
+  height: 70vh;
 }
 
 .img-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-}
-
-.card-info {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  justify-content: center;
-  align-content: center;
-  width: 500px;
-}
-
-.form-card {
-  width: 180px;
-  background: #fbfbfb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-}
 
-.form-group {
-  margin-bottom: 20px;
 }
-
-.input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.label-container{
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #101010;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
-
-.submit-button {
+.form-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color:white;
+  height:100%;
+  min-width:70%;
+  border-radius: 20px;
+  box-shadow: -13px 20px 37px 4px rgba(0,0,0,0.48);
+  -webkit-box-shadow: -13px 20px 37px 4px rgba(0,0,0,0.48);
+  -moz-box-shadow: -13px 20px 37px 4px rgba(0,0,0,0.48);
+}
+.register-form{
+  display: flex;
   flex-direction: column;
-  border-width: 0;
-  height: 30px;
-  border-color: inherit;
-  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .card-content {
+    flex-direction: column;
+  }
+
+  .img-container, .form-container {
+    width: 100%;
+  }
+  .form-container{
+    min-width:50%;
+  }
+}
+@media (max-width: 1440px) {
+  .img-container{
+    width: 80%;
+  }
+  .form-container{
+    min-width:70%;
+  }
+}
+@media (max-width: 1024px) {
+  .img-container{
+    width: 50%;
+  }
+  .form-container{
+    min-width:50%;
+  }
+}
+.error-message {
+  color: red;
+  text-align: center;
 }
 
-.button-a {
-  background-color: #6FA9AE;
-  border-width: 0;
-  height: 30px;
-  border-color: inherit;
-  border-radius: 10px;
-}
-.button-b {
-  background-color: gray;
-  border-width: 0;
-  height: 30px;
-  border-color: inherit;
-  border-radius: 10px;
-}
-
-.submit-button:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.button-a:hover {
-  opacity: 0.4;
-  cursor: pointer;
-}
 </style>

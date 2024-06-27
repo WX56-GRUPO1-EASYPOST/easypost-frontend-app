@@ -119,9 +119,9 @@ export default {
 .card-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  min-width: 50em;
+  gap: 5em;
   height: 70vh;
 }
 
@@ -131,9 +131,14 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-
 }
-
+.label-container{
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #101010;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
 .form-container {
   display: flex;
   flex-direction: column;
@@ -141,7 +146,7 @@ export default {
   align-items: center;
   background-color:white;
   height:100%;
-  min-width:90%;
+  min-width:70%;
   border-radius: 20px;
   box-shadow: -13px 20px 37px 4px rgba(0,0,0,0.48);
   -webkit-box-shadow: -13px 20px 37px 4px rgba(0,0,0,0.48);

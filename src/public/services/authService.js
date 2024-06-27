@@ -28,14 +28,14 @@ class AuthService {
         return axios.get(url);
     }
     loginUser(user){
-        return axios.post(`${API_URL}/sign-in`,user);
+        return axios.post(`${API_URL2}/sign-in`,user);
     }
     registerUser2(user) {
-        return axios.post(API_URL, user);
+        return axios.post(API_URL2, user);
 
     }
     registerUser(user){
-        return axios.post(`${API_URL}/sign-up`,user);
+        return axios.post(`${API_URL2}/sign-up`,user);
     }
 }
 
