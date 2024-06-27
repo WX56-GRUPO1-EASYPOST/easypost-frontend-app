@@ -39,7 +39,7 @@ export default {
           role: user.type
         }
         localStorage.setItem("user", JSON.stringify(currentUser))
-        this.$router.push({path: currentUser.role === 'Enterprise' ? '/enterprise-home' : '/client-home'});
+        this.$router.push({path: currentUser.role === 'Company' ? '/enterprise-home' : '/client-home'});
       }
     }
   }

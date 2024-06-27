@@ -1,7 +1,8 @@
-import axios from 'axios';
+//import axios from 'axios';
+import axiosInstance from "../../shared/services/shared.service.js";
 
-const API_URL2 = 'http://localhost:3000/usuarios';
-const API_URL="http://localhost:5134/api/v1/authentication"
+/*const API_URL2 = 'http://localhost:3000/usuarios';
+const API_URL="http://localhost:5134/api/v1/authentication"*/
 
 class AuthService {
     /*async login(email, password) {
@@ -20,7 +21,7 @@ class AuthService {
         }
     }*/
     getAllUsers() {
-        return axios.get(API_URL2);
+        return axiosInstance.get(API_URL2);
     }
 
     getUserById(userId) {
@@ -35,7 +36,8 @@ class AuthService {
 
     }
     registerUser(user){
-        return axios.post(`${API_URL2}/sign-up`,user);
+        //return axios.post(`${API_URL2}/sign-up`,user);
+        return axiosInstance.post('/authentication/sign-up',user)
     }
 }
 

@@ -91,7 +91,7 @@ export default {
 
       if (this.formErrors.length === 0) {
 
-        if(this.Role==='Cliente'){
+        if(this.Role==='Client'){
           this.rol=1;
         }else{
           this.rol=0;
@@ -102,6 +102,7 @@ export default {
         AuthService.registerUser(signUpUser).then(response=>{
           console.log(response.data)
         })
+        console.log(signUpUser)
 
         this.$router.push({ path: '/login' });
       } else {
