@@ -1,5 +1,6 @@
 //import axios from 'axios';
 import axiosInstance from "../../shared/services/shared.service.js";
+import {SignInResponse} from "../model/sign-in-response.js";
 
 /*const API_URL2 = 'http://localhost:3000/usuarios';
 const API_URL="http://localhost:5134/api/v1/authentication"*/
@@ -28,8 +29,9 @@ class AuthService {
         const url = `${API_URL2}/${userId}`;
         return axios.get(url);
     }
+
     loginUser(user){
-        return axios.post(`${API_URL2}/sign-in`,user);
+        return axiosInstance(SignInResponse).post(`/authentication/sign-in`, user);
     }
     registerUser2(user) {
         return axios.post(API_URL2, user);

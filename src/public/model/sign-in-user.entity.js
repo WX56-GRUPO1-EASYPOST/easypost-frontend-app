@@ -1,6 +1,8 @@
 export class SignInUserEntity{
-    constructor(username="", password="") {
-        this.username = username;
-        this.password = password;
+    constructor(
+        Username="",
+        Password="") {
+        this.username = Username;
+        this.password = Password;
     }
 }
