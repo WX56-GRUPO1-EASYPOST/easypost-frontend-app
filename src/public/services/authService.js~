@@ -29,7 +29,7 @@ class AuthService {
         return axios.get(url);
     }
     loginUser(user){
-        return axiosInstance.post(`/authentication/sign-in`,user);
+        return axios.post(`${API_URL2}/sign-in`,user);
     }
     registerUser2(user) {
         return axios.post(API_URL2, user);
