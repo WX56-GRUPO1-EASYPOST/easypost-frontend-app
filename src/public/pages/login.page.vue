@@ -38,7 +38,7 @@ export default {
           id:user.id
         }
         const userToken = user.token;
-        localStorage.setItem("user", JSON.stringify(currentUser))
+        localStorage.setItem("userId", user.id)
         localStorage.setItem("token",userToken)
         const profile = await ProfilesService.GetProfileByUserId(user.id)
         localStorage.setItem("userRole",profile.data.type)

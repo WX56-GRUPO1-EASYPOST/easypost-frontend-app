@@ -10,13 +10,13 @@ export default {
     return {
       profile:new ProfileEntity(),
       visible: false,
-      currentUser:null,
+      currentUserId:null,
       currentRole:""
     }
   },
   created() {
-      let temp=localStorage.getItem("user");
-      this.currentUser=JSON.parse(temp);
+      let temp=localStorage.getItem("userId");
+      this.currentUserId=temp;
       let userType=localStorage.getItem("userRole");
       this.currentRole = userType;
   },
@@ -27,8 +27,8 @@ export default {
       this.$router.push({name: 'login'});
     },
     async openProfile(){
-      let user = JSON.parse(localStorage.getItem("user"))
-      let id = user.id
+      let userId = localStorage.getItem("userId")
+      let id = userId
       const response = await ProfilesService.GetProfileByUserId(id)
       let profileResponse = response.data
       this.profile=new ProfileEntity(

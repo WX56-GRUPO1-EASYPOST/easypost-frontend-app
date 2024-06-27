@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    let enterpriseId = this.$route.params.enterpriseId
+    let enterpriseId = localStorage.getItem("userId");
     this.getData(enterpriseId)
   },
   methods: {

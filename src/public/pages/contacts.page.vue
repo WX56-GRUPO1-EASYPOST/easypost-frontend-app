@@ -21,8 +21,8 @@ export default {
     }
   },
   mounted() {
-    let user = JSON.parse(localStorage.getItem("user"))
-    let id = user.id
+    let userId = localStorage.getItem("userId")
+    let id = userId
     this.getData(id)
   },
   methods: {
@@ -46,8 +46,8 @@ export default {
       if(this.message===""){
         return
       }
-      let user = JSON.parse(localStorage.getItem("user"))
-      let id = parseInt(user.id)
+      let userId = localStorage.getItem("userId")
+      let id = userId
 
       //calcular el id apropiado para el mensaje
       let length=0

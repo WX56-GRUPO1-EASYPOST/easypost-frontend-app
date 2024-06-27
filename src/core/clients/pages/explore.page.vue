@@ -8,11 +8,10 @@ export default {
   data(){
     return{
       enterprisesList:[],
-      profilesService:new ProfilesService()
     }
   },
   mounted() {
-    this.profilesService.getEnterpriseProfiles().then(response => {
+    ProfilesService.getEnterpriseProfiles().then(response => {
       this.enterprisesList=response.data;
     })
   }

@@ -27,8 +27,8 @@ export default {
     };
   },
   mounted() {
-    let user = JSON.parse(localStorage.getItem("user"));
-    this.clientId=user.id;
+    let userId = localStorage.getItem("userId");
+    this.clientId=userId;
     let enterpriseId = this.$route.params.enterpriseId
     this.getData(enterpriseId)
   },
