@@ -1,7 +1,7 @@
 <script>
 import AuthService from '../services/authService.js';
 import {SignInUserEntity} from "../model/sign-in-user.entity.js";
-
+import ProfilesService from "../services/profiles.service.js";
 export default {
   name: "login",
   data() {
@@ -35,12 +35,14 @@ export default {
       this.loginError = !user;
       if (user) {
         const currentUser = {
-          id:user.id,
-          role: user.type
+          id:user.id
         }
         const userToken = user.token;
         localStorage.setItem("user", JSON.stringify(currentUser))
         localStorage.setItem("token",userToken)
+        const profile = await ProfilesService.GetProfileByUserId(user.id)
+        localStorage.setItem("userRole",profile.data.type)
+        console.log(profile.data.type)
         this.$router.push({path: currentUser.role === 'Company' ? '/enterprise-home' : '/client-home'});
       }
     }

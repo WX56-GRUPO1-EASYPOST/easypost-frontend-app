@@ -1,15 +1,14 @@
-import axios from "axios";
+import axiosInstance from "../../shared/services/shared.service.js";
 
 const API_URL = "http://localhost:5134/api/v1/profiles";
 
-export default class ProfilesService{
-    getProfileByUserId(id){
-        return axios.get(`${API_URL}/user/${id}`)
+class ProfilesService{
+    GetProfileByUserId(id){
+        return axiosInstance.get(`/profiles/${id}`)
     }
     getEnterpriseProfiles(){
-        return axios.get(`${API_URL}/enterprises`)
-    }
-    getProfileById(id){
-        return axios.get(`${API_URL}/${id}`)
+        return axiosInstance.get(`/enterprises`)
     }
 }
+
+export default new ProfilesService();

@@ -8,15 +8,17 @@ export default {
   components: {Profile},
   data() {
     return {
-      profilesService : new ProfilesService(),
       profile:new ProfileEntity(),
       visible: false,
-      currentUser:null
+      currentUser:null,
+      currentRole:""
     }
   },
   created() {
       let temp=localStorage.getItem("user");
       this.currentUser=JSON.parse(temp);
+      let userType=localStorage.getItem("userRole");
+      this.currentRole = userType;
   },
   methods: {
     logout() {
@@ -27,7 +29,7 @@ export default {
     async openProfile(){
       let user = JSON.parse(localStorage.getItem("user"))
       let id = user.id
-      const response = await this.profilesService.getProfileByUserId(id)
+      const response = await ProfilesService.GetProfileByUserId(id)
       let profileResponse = response.data
       this.profile=new ProfileEntity(
           profileResponse.id,profileResponse.fullContact,
@@ -50,7 +52,7 @@ export default {
       </button>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='Enterprise'">
+    <div class="toolbar-item" v-if="this.currentRole==='Company'">
       <router-link to="/requests" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
@@ -60,7 +62,7 @@ export default {
     </div>
 
 <!--    Boton Explorar solo para cliente-->
-    <div class="toolbar-item" v-if="currentUser.role==='Client'">
+    <div class="toolbar-item" v-if="currentRole==='Client'">
       <router-link to="/explore" style="text-decoration: none">
         <div class="toolbar-item-content">
           <img src="../../assets/busqueda.png" alt="Solicitudes">
@@ -69,13 +71,13 @@ export default {
       </router-link>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='Client'">
+    <div class="toolbar-item" v-if="currentRole==='Client'">
       <router-link to='/client-home'>
         <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
       </router-link>
     </div>
 
-    <div class="toolbar-item" v-if="currentUser.role==='Enterprise'">
+    <div class="toolbar-item" v-if="currentRole==='Company'">
       <router-link to='/enterprise-home'>
         <img class="logo" src="../../assets/logo.png" alt="Logo de la empresa">
       </router-link>
